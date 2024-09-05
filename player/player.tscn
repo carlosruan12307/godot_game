@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://cw7oidbwayfgj"]
+
+[ext_resource type="Texture2D" uid="uid://dnn2uvebwnvvc" path="res://sheet/Necromancer_creativekind-Sheet.png" id="1_5mn5g"]
+[ext_resource type="Script" path="res://player/character_body_2d.gd" id="1_kngrs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nta5y"]
+radius = 26.0192
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5v3rq"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(0, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt1nx"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(160, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh1iu"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(320, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sxvn"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(480, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaihp"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(640, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3qat"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(800, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w61pd"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(960, 0, 160, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8slsw"]
+atlas = ExtResource("1_5mn5g")
+region = Rect2(1120, 0, 160, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_whxrb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5v3rq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt1nx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh1iu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sxvn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaihp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3qat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w61pd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8slsw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_kngrs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1, 26)
+shape = SubResource("CircleShape2D_nta5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/Sprite2D"]
+sprite_frames = SubResource("SpriteFrames_whxrb")
+frame_progress = 0.488365
