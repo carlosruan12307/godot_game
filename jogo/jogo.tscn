@@ -9,10 +9,10 @@ size = Vector2(129.192, 134)
 [node name="Node2D" type="Node2D"]
 
 [node name="Node2D" parent="." instance=ExtResource("2_m1f0s")]
-position = Vector2(301, 108)
+position = Vector2(270, 380)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(400.5, 272)
+position = Vector2(316, 556)
 scale = Vector2(4.19531, 1)
 
 [node name="Icon" type="Sprite2D" parent="StaticBody2D"]

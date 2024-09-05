@@ -106,7 +106,7 @@ shape = SubResource("CircleShape2D_nta5y")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_whxrb")
 animation = &"jump"
-frame_progress = 0.30258
+frame_progress = 0.995167
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521
