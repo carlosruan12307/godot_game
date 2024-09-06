@@ -15,6 +15,12 @@ run/main_scene="res://jogo/jogo.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[global_group]
+
+Item="Grupo dos itens"
+Buff="Objeto causará buff no personagem"
+Debuff="Item causará debuff no personagem"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
