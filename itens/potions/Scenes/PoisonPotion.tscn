@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmfkmb0im2i8t"]
+
+[ext_resource type="Script" path="res://itens/potions/Scripts/PotionsHandle.gd" id="1_tq5yh"]
+[ext_resource type="Texture2D" uid="uid://d4gkusrs3en01" path="res://sheet/potions.png" id="2_n6k1l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qe1f6"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mu4pm"]
+radius = 21.8403
+
+[node name="PoisonPotion" type="Node2D" groups=["Debuff", "Item"]]
+script = ExtResource("1_tq5yh")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="ColorPotion" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(170.5, 249.625)
+scale = Vector2(2.8125, 2.39706)
+texture = ExtResource("2_n6k1l")
+hframes = 21
+vframes = 15
+frame = 8
+
+[node name="BodyPotion" type="CollisionShape2D" parent="CharacterBody2D"]
+visible = false
+position = Vector2(171, 253)
+shape = SubResource("CircleShape2D_qe1f6")
+
+[node name="DetectionAreaPotion" type="Area2D" parent="CharacterBody2D"]
+
+[node name="Range" type="CollisionShape2D" parent="CharacterBody2D/DetectionAreaPotion"]
+position = Vector2(171, 251)
+shape = SubResource("CircleShape2D_mu4pm")
+
+[connection signal="body_entered" from="CharacterBody2D/DetectionAreaPotion" to="." method="_on_detection_area_poison_potion_body_entered"]

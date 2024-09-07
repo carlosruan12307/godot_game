@@ -4,15 +4,19 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 const jump_duration = 0.5
+
 var is_jumping = false
 var is_walking = false
+
+
 @onready var timer = $Sprite2D/Timer
+
 func _ready() -> void:
 
 		scale = Vector2(3,3)
 
 func _process(delta: float) -> void:
-	print(animation.animation)
+	
 	if animation.animation == "run" and velocity == Vector2.ZERO:
 		animation.play("idle")
 	if animation.animation == "jump" and is_on_floor() and is_jumping:

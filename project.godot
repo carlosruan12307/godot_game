@@ -11,15 +11,20 @@ config_version=5
 [application]
 
 config/name="Comp_Graf"
-run/main_scene="res://jogo/jogo.tscn"
+run/main_scene="res://game/Game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Questions="*res://game/Scripts/Questions.gd"
 
 [global_group]
 
 Item="Grupo dos itens"
 Buff="Objeto causará buff no personagem"
 Debuff="Item causará debuff no personagem"
+Player=""
 
 [rendering]
 
