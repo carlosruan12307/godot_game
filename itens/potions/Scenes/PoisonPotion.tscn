@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmfkmb0im2i8t"]
 
 [ext_resource type="Script" path="res://itens/potions/Scripts/PotionsHandle.gd" id="1_tq5yh"]
-[ext_resource type="Texture2D" uid="uid://d4gkusrs3en01" path="res://sheet/potions.png" id="2_n6k1l"]
+[ext_resource type="Texture2D" uid="uid://d4gkusrs3en01" path="res://assets/Itens/potions.png" id="2_n6k1l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qe1f6"]
 radius = 17.0

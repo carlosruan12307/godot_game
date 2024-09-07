@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bterf0xuop32e"]
+
+[ext_resource type="Texture2D" uid="uid://ptqc2yguk23u" path="res://assets/Map/moon.png" id="1_5tcli"]
+[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_y617p"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_sg51i"]
+a = Vector2(75.7111, -161)
+b = Vector2(20.3081, -171.449)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_b6bx3"]
+a = Vector2(20.232, -172)
+b = Vector2(-18.4506, -67)
+
+[node name="FirstPhase" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(564, 314)
+scale = Vector2(0.382645, 0.39992)
+texture = ExtResource("1_5tcli")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(508, 590)
+scale = Vector2(7.85882, 1)
+
+[node name="collision1" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("SegmentShape2D_sg51i")
+
+[node name="collision2" type="CollisionShape2D" parent="Floor"]
+scale = Vector2(-0.858409, 0.390788)
+shape = SubResource("SegmentShape2D_sg51i")
+
+[node name="collision3" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("SegmentShape2D_b6bx3")
+
+[node name="Player" parent="." instance=ExtResource("2_y617p")]
+position = Vector2(86, 412)
+scale = Vector2(4.9412, 4.91408)
