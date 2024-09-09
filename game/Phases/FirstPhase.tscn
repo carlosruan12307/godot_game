@@ -5,10 +5,10 @@
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_sg51i"]
 a = Vector2(75.7111, -161)
-b = Vector2(20.3081, -171.449)
+b = Vector2(10.1796, -172)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_b6bx3"]
-a = Vector2(20.232, -172)
+a = Vector2(9.70261, -172)
 b = Vector2(-18.4506, -67)
 
 [node name="FirstPhase" type="Node2D"]
@@ -31,8 +31,11 @@ scale = Vector2(-0.858409, 0.390788)
 shape = SubResource("SegmentShape2D_sg51i")
 
 [node name="collision3" type="CollisionShape2D" parent="Floor"]
+scale = Vector2(1.00982, 1)
 shape = SubResource("SegmentShape2D_b6bx3")
 
 [node name="Player" parent="." instance=ExtResource("2_y617p")]
 position = Vector2(86, 412)
 scale = Vector2(4.9412, 4.91408)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

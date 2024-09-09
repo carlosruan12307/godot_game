@@ -8,23 +8,23 @@ var is_jumping = false
 var is_walking = false
 @onready var timer = $Sprite2D/Timer
 func _ready() -> void:
-
+		animation.play("idle")
 		scale = Vector2(3,3)
 
 func _process(delta: float) -> void:
-	print(animation.animation)
+	pass
+
+func _physics_process(delta: float) -> void:
+		# Handle jump.
 	if animation.animation == "run" and velocity == Vector2.ZERO:
 		animation.play("idle")
 	if animation.animation == "jump" and is_on_floor() and is_jumping:
 		animation.play("idle")
 		is_jumping = false
-
-func _physics_process(delta: float) -> void:
-		# Handle jump.
-
 	if Input.is_action_pressed("ui_accept") and is_on_floor():
 		animation.play("jump")
 		await get_tree().create_timer(.5).timeout
+		
 		velocity.y = JUMP_VELOCITY
 		is_jumping = true
 	# Add the gravity.
@@ -42,11 +42,13 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("ui_right"):
 			is_walking = true
 			sprite.scale.x = 1
-			animation.play("run")
+			if not is_jumping:
+				animation.play("run")
 		if Input.is_action_pressed("ui_left"):
 			is_walking = true
 			sprite.scale.x = -1
-			animation.play("run")
+			if not is_jumping:
+				animation.play("run")
 	else:
 		is_walking = false
 		velocity.x = move_toward(velocity.x, 0, SPEED)
