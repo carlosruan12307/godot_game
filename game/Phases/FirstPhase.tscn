@@ -34,8 +34,9 @@ shape = SubResource("SegmentShape2D_sg51i")
 scale = Vector2(1.00982, 1)
 shape = SubResource("SegmentShape2D_b6bx3")
 
-[node name="Player" parent="." instance=ExtResource("2_y617p")]
-position = Vector2(86, 412)
-scale = Vector2(4.9412, 4.91408)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(-54.5883, -261, -42.5, -262, -30.4117, -309, -26.7216, -309, -22.0135, -309, -11.9611, -313, -12.0883, -279, -29.7755, -267, -42.5, -231, -54.7156, -231)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Player" parent="." instance=ExtResource("2_y617p")]
+position = Vector2(75, 425)
+scale = Vector2(4.9412, 4.91408)

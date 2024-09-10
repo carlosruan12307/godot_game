@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cw7oidbwayfgj"]
+[gd_scene load_steps=24 format=3 uid="uid://cw7oidbwayfgj"]
 
 [ext_resource type="Script" path="res://player/Scripts/Player.gd" id="1_4oj7c"]
 [ext_resource type="Texture2D" uid="uid://jhmkg8waq2r3" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-00.png" id="2_83xhv"]
@@ -15,9 +15,14 @@
 [ext_resource type="Texture2D" uid="uid://cfa1dqtgy64pb" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-03.png" id="13_0ubi8"]
 [ext_resource type="Texture2D" uid="uid://cn8svct536s73" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-04.png" id="14_ep20c"]
 [ext_resource type="Texture2D" uid="uid://c6rcj7ttg3rix" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-05.png" id="15_81uhg"]
+[ext_resource type="Script" path="res://player/state.gd" id="16_58dem"]
+[ext_resource type="Script" path="res://player/state_machine.gd" id="16_m280w"]
+[ext_resource type="Script" path="res://player/idle.gd" id="18_x1cna"]
+[ext_resource type="Script" path="res://player/walk.gd" id="19_mid8d"]
+[ext_resource type="Script" path="res://player/jump.gd" id="20_04j8r"]
+[ext_resource type="Script" path="res://player/input.gd" id="21_wgm8u"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_nta5y"]
-radius = 14.0357
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_lxpfw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whxrb"]
 animations = [{
@@ -98,19 +103,42 @@ animations = [{
 script = ExtResource("1_4oj7c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 5)
-shape = SubResource("CircleShape2D_nta5y")
+position = Vector2(0, 5)
+scale = Vector2(1.105, 1.105)
+shape = SubResource("SegmentShape2D_lxpfw")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_whxrb")
 animation = &"jump"
-frame_progress = 0.30258
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521
 one_shot = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -9, 4, -7, 4, -1, 8, 3, 8, 6, 7, 16, 3, 7, 5, 10, 6, 14, 7, 17, 5, 17, 4, 15, 2, 13, 0, 11, -4, 14, -6, 17, -8, 18, -7, 14, -6, 11, -9, 13, -11, 15, -13, 18, -15, 17, -15, 15, -12, 13, -11, 11, -11, 8, -11, 7, -10, 4, -9, 2, -7, -1, -4, -2, -4, -6, -3, -8, -1, -9)
+
+[node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("16_m280w")
+initial_state = NodePath("Idle")
+
+[node name="State" type="Node" parent="State Machine"]
+script = ExtResource("16_58dem")
+
+[node name="Idle" type="Node" parent="State Machine"]
+script = ExtResource("18_x1cna")
+
+[node name="Run" type="Node" parent="State Machine"]
+script = ExtResource("19_mid8d")
+
+[node name="Jump" type="Node" parent="State Machine"]
+script = ExtResource("20_04j8r")
+
+[node name="Input" type="Node" parent="State Machine"]
+script = ExtResource("21_wgm8u")
 
 [connection signal="animation_changed" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
