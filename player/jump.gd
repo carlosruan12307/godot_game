@@ -5,7 +5,7 @@ class_name Jump
 @onready var player = $"../.."
 @onready var animation = $"../../Sprite2D/AnimatedSprite2D"
 # Called when the node enters the scene tree for the first time.
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -700.0
 func Enter():
 	
 	animation.play("jump")
@@ -30,5 +30,5 @@ func physics_process_state(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	inputHandle.inputHandlez(self,transitioned,"jump","","")
+	inputHandle.inputHandlez(self,transitioned,"","","","")
 	pass

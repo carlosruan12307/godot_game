@@ -1,15 +1,20 @@
-[gd_scene load_steps=24 format=3 uid="uid://cw7oidbwayfgj"]
+[gd_scene load_steps=31 format=3 uid="uid://cw7oidbwayfgj"]
 
 [ext_resource type="Script" path="res://player/Scripts/Player.gd" id="1_4oj7c"]
 [ext_resource type="Texture2D" uid="uid://jhmkg8waq2r3" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-00.png" id="2_83xhv"]
 [ext_resource type="Texture2D" uid="uid://csdbpaq2ebtjc" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-01.png" id="3_2o5m0"]
+[ext_resource type="Texture2D" uid="uid://fhemhvw5f2le" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack2-02.png" id="3_4irjw"]
 [ext_resource type="Texture2D" uid="uid://dw3ekolsbluxd" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-02.png" id="4_t8hwa"]
+[ext_resource type="Texture2D" uid="uid://duse36a8yifkl" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack2-03.png" id="4_vb3ax"]
+[ext_resource type="Texture2D" uid="uid://cpjt6vcqt61pq" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack2-04.png" id="5_6aj2r"]
 [ext_resource type="Texture2D" uid="uid://cp4nvyv3v32r1" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-03.png" id="5_62saq"]
+[ext_resource type="Texture2D" uid="uid://bsi4r5c5wa3qh" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack2-05.png" id="6_i8hba"]
 [ext_resource type="Texture2D" uid="uid://ejxmjhdej8cj" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-jump-00.png" id="6_os2eu"]
 [ext_resource type="Texture2D" uid="uid://cuvk24vk5ny8w" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-jump-01.png" id="7_d5qtm"]
 [ext_resource type="Texture2D" uid="uid://1kf8ymdk5v3k" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-jump-02.png" id="8_rnlh2"]
 [ext_resource type="Texture2D" uid="uid://drhb0bvwess2e" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-jump-03.png" id="9_a3a2u"]
 [ext_resource type="Texture2D" uid="uid://dp4aqba3pq0ok" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-00.png" id="10_6tums"]
+[ext_resource type="Texture2D" uid="uid://bkj2mrn8e3j62" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack2-00.png" id="10_m5kmp"]
 [ext_resource type="Texture2D" uid="uid://c2o6al1vq8o02" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-01.png" id="11_0fmuh"]
 [ext_resource type="Texture2D" uid="uid://vogsqvactydw" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-02.png" id="12_15lpf"]
 [ext_resource type="Texture2D" uid="uid://cfa1dqtgy64pb" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-03.png" id="13_0ubi8"]
@@ -21,11 +26,33 @@
 [ext_resource type="Script" path="res://player/walk.gd" id="19_mid8d"]
 [ext_resource type="Script" path="res://player/jump.gd" id="20_04j8r"]
 [ext_resource type="Script" path="res://player/input.gd" id="21_wgm8u"]
+[ext_resource type="Script" path="res://player/atack_1.gd" id="22_2n7on"]
+[ext_resource type="Script" path="res://player/model_state.gd" id="23_vbauu"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_lxpfw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whxrb"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_m5kmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4irjw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vb3ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6aj2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i8hba")
+}],
+"loop": false,
+"name": &"atack_1",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_83xhv")
@@ -112,13 +139,16 @@ disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"jump"
+animation = &"atack_1"
+frame = 4
+frame_progress = 1.0
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521
 one_shot = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(0, -9, 4, -7, 4, -1, 8, 3, 8, 6, 7, 16, 3, 7, 5, 10, 6, 14, 7, 17, 5, 17, 4, 15, 2, 13, 0, 11, -4, 14, -6, 17, -8, 18, -7, 14, -6, 11, -9, 13, -11, 15, -13, 18, -15, 17, -15, 15, -12, 13, -11, 11, -11, 8, -11, 7, -10, 4, -9, 2, -7, -1, -4, -2, -4, -6, -3, -8, -1, -9)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -140,6 +170,13 @@ script = ExtResource("20_04j8r")
 [node name="Input" type="Node" parent="State Machine"]
 script = ExtResource("21_wgm8u")
 
+[node name="Atack1" type="Node" parent="State Machine"]
+script = ExtResource("22_2n7on")
+
+[node name="ModelState" type="Node" parent="State Machine"]
+script = ExtResource("23_vbauu")
+
 [connection signal="animation_changed" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="State Machine/Atack1" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Sprite2D/Timer" to="." method="_on_timer_timeout"]

@@ -4,8 +4,10 @@ class_name InputHandle
 @onready var player = $"../.."
 const SPEED = 300.0
 # Called when the node enters the scene tree for the first time.
-func inputHandlez(state : State,transitioned: Signal,doAfterSpace,doAfterRight,doAfterLeft) -> void:
+func inputHandlez(state : State,transitioned: Signal,doAfterSpace,doAfterRight,doAfterLeft,doAfterZ) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
+	if Input.is_action_pressed("Z"):
+		transitioned.emit(state,doAfterZ)
 	if Input.is_action_pressed("ui_accept"):
 		transitioned.emit(state,doAfterSpace)
 	if direction:

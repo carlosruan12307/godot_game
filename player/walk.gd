@@ -25,5 +25,5 @@ func physics_process_state(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	inputHandle.inputHandlez(self,transitioned,"jump","run","run")
+	inputHandle.inputHandlez(self,transitioned,"jump","run","run","atack1")
 	pass
