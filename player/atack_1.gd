@@ -23,7 +23,7 @@ func process_state(delta: float) -> void:
 		if player.is_on_floor():
 			transitioned.emit(self,"idle")
 		else:
-			inputHandle.inputHandlez(self,transitioned,"jump","run","run","atack")		
+			inputHandle.inputHandlez(self,transitioned,"","run","run","atack")		
 	else:
 		inputHandle.inputHandlez(self,transitioned,"jump","run","run","atack")
 	pass
@@ -37,5 +37,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-
+	print("ataque voador acabou")
+	
 	pass # Replace with function body.

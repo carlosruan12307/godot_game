@@ -72,6 +72,11 @@ animations = [{
 "name": &"atack_1",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"drop",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_83xhv")
@@ -152,7 +157,7 @@ script = ExtResource("1_4oj7c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"jump"
+animation = &"drop"
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521

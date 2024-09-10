@@ -8,6 +8,8 @@ class_name Walk
 func Enter():
 	if animation.animation != "air_atack":
 		animation.play("run")
+	elif player.velocity.y == 0:
+		animation.play("run")
 	pass
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,7 +21,7 @@ func _physics_process(delta: float) -> void:
 func process_state(delta: float) -> void:
 	 
 	inputHandle.inputHandlez(self,transitioned,"jump","run","run","")
-	if player.velocity == Vector2.ZERO:
+	if player.velocity == Vector2.ZERO :
 		transitioned.emit(self,"idle")
 	pass
 func physics_process_state(delta: float) -> void:
