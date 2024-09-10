@@ -1,10 +1,5 @@
 extends Node
 
-#############################################
-# State machine as set up in my video on FSMs
-# https://www.youtube.com/watch?v=ow_Lum-Agbs
-# Code is clearer here though, better names
-#############################################
 
 @export var initial_state : State
 

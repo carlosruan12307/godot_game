@@ -8,6 +8,7 @@ class_name Idle
 const SPEED = 300.0
 # Called when the node enters the scene tree for the first time.
 func Enter():
+	animation.play("idle")
 	pass
 func Exit():
 	pass
@@ -19,10 +20,7 @@ func _physics_process(delta: float) -> void:
 
 
 func process_state(delta: float) -> void:
-	print(player.velocity)
-	if player.velocity == Vector2.ZERO or player.velocity.y == 0:
-		animation.play("idle")
-		inputHandle.inputHandlez(self,transitioned,"jump","run","run","atack1")
+	inputHandle.inputHandlez(self,transitioned,"jump","run","run","atack")
 	pass
 func physics_process_state(delta: float) -> void:
 	
