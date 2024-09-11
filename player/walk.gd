@@ -19,8 +19,10 @@ func _physics_process(delta: float) -> void:
 
 
 func process_state(delta: float) -> void:
-	 
-	inputHandle.inputHandlez(self,transitioned,"jump","run","run","")
+	if animation.animation != "air_atack":
+		inputHandle.inputHandlez(self,transitioned,"jump","run","run","")
+	else:
+		inputHandle.inputHandlez(self,transitioned,"","run","run","")
 	if player.velocity == Vector2.ZERO :
 		transitioned.emit(self,"idle")
 	pass

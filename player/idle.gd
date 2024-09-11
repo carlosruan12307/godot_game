@@ -20,6 +20,7 @@ func _physics_process(delta: float) -> void:
 
 
 func process_state(delta: float) -> void:
+	
 	inputHandle.inputHandlez(self,transitioned,"jump","run","run","atack")
 	pass
 func physics_process_state(delta: float) -> void:
