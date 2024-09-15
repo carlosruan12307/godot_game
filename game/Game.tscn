@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2sr731cbnlgf"]
+[gd_scene load_steps=4 format=3 uid="uid://b2sr731cbnlgf"]
 
 [ext_resource type="PackedScene" uid="uid://bterf0xuop32e" path="res://game/Phases/FirstPhase.tscn" id="1_jkas0"]
+[ext_resource type="PackedScene" uid="uid://bugmyh4jgx60o" path="res://game/Phases/SecondPhase.tscn" id="2_6jqhl"]
+[ext_resource type="PackedScene" uid="uid://dwbub4vxat61s" path="res://game/Phases/ThirdPhase.tscn" id="3_olhee"]
 
 [node name="Game" type="Node2D"]
-scale = Vector2(5.81301, 2.33659)
+scale = Vector2(6.34213, 2.58277)
 
 [node name="FirstPhase" parent="." instance=ExtResource("1_jkas0")]
 scale = Vector2(0.175692, 0.435074)
+
+[node name="SecondPhase" parent="." instance=ExtResource("2_6jqhl")]
+position = Vector2(9.28951, 392.452)
+scale = Vector2(0.180989, 0.403094)
+
+[node name="ThirdPhase" parent="." instance=ExtResource("3_olhee")]
+position = Vector2(280.347, 392.602)
+scale = Vector2(0.170374, 0.4305)

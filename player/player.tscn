@@ -21,17 +21,17 @@
 [ext_resource type="Texture2D" uid="uid://cn8svct536s73" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-04.png" id="14_ep20c"]
 [ext_resource type="Texture2D" uid="uid://k1r4umhb2013" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-air-attack1-00.png" id="15_51dwn"]
 [ext_resource type="Texture2D" uid="uid://c6rcj7ttg3rix" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-05.png" id="15_81uhg"]
-[ext_resource type="Script" path="res://player/state.gd" id="16_58dem"]
 [ext_resource type="Texture2D" uid="uid://4u7lgm34gl5t" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-air-attack1-01.png" id="16_cggb3"]
-[ext_resource type="Script" path="res://player/state_machine.gd" id="16_m280w"]
 [ext_resource type="Texture2D" uid="uid://e1wujbnyofa3" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-air-attack1-02.png" id="17_6ueko"]
 [ext_resource type="Texture2D" uid="uid://0wllpfbl30mq" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-air-attack1-03.png" id="18_dp2a6"]
-[ext_resource type="Script" path="res://player/idle.gd" id="18_x1cna"]
-[ext_resource type="Script" path="res://player/walk.gd" id="19_mid8d"]
-[ext_resource type="Script" path="res://player/jump.gd" id="20_04j8r"]
-[ext_resource type="Script" path="res://player/input.gd" id="21_wgm8u"]
-[ext_resource type="Script" path="res://player/atack_1.gd" id="22_2n7on"]
-[ext_resource type="Script" path="res://player/model_state.gd" id="23_vbauu"]
+[ext_resource type="Script" path="res://player/Scripts/state_machine.gd" id="25_dldex"]
+[ext_resource type="Script" path="res://player/Scripts/state.gd" id="26_34jm4"]
+[ext_resource type="Script" path="res://player/Scripts/idle.gd" id="27_prnfe"]
+[ext_resource type="Script" path="res://player/Scripts/walk.gd" id="28_1y68m"]
+[ext_resource type="Script" path="res://player/Scripts/jump.gd" id="29_6baul"]
+[ext_resource type="Script" path="res://player/Scripts/input.gd" id="30_d0470"]
+[ext_resource type="Script" path="res://player/Scripts/atack_1.gd" id="31_hktnr"]
+[ext_resource type="Script" path="res://player/Scripts/model_state.gd" id="32_d2o8s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whxrb"]
 animations = [{
@@ -50,7 +50,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"air_atack",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -70,12 +70,12 @@ animations = [{
 }],
 "loop": false,
 "name": &"atack_1",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [],
 "loop": true,
 "name": &"drop",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -92,7 +92,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -147,7 +147,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 15.0
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -156,8 +156,9 @@ script = ExtResource("1_4oj7c")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
+scale = Vector2(1.00255, 1)
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"drop"
+animation = &"jump"
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521
@@ -167,29 +168,29 @@ one_shot = true
 polygon = PackedVector2Array(0, -9, 4, -7, 4, -1, 8, 3, 8, 6, 7, 16, 3, 7, 5, 10, 6, 14, 7, 17, 5, 17, 4, 15, 2, 13, 0, 11, -4, 14, -6, 17, -8, 18, -7, 14, -6, 11, -9, 13, -11, 15, -13, 18, -15, 17, -15, 15, -12, 13, -11, 11, -11, 8, -11, 7, -10, 4, -9, 2, -7, -1, -4, -2, -4, -6, -3, -8, -1, -9)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("16_m280w")
+script = ExtResource("25_dldex")
 initial_state = NodePath("Idle")
 
 [node name="State" type="Node" parent="State Machine"]
-script = ExtResource("16_58dem")
+script = ExtResource("26_34jm4")
 
 [node name="Idle" type="Node" parent="State Machine"]
-script = ExtResource("18_x1cna")
+script = ExtResource("27_prnfe")
 
 [node name="Run" type="Node" parent="State Machine"]
-script = ExtResource("19_mid8d")
+script = ExtResource("28_1y68m")
 
 [node name="Jump" type="Node" parent="State Machine"]
-script = ExtResource("20_04j8r")
+script = ExtResource("29_6baul")
 
 [node name="Input" type="Node" parent="State Machine"]
-script = ExtResource("21_wgm8u")
+script = ExtResource("30_d0470")
 
 [node name="Atack" type="Node" parent="State Machine"]
-script = ExtResource("22_2n7on")
+script = ExtResource("31_hktnr")
 
 [node name="ModelState" type="Node" parent="State Machine"]
-script = ExtResource("23_vbauu")
+script = ExtResource("32_d2o8s")
 
 [connection signal="animation_changed" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

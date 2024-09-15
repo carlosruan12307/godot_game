@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://bugmyh4jgx60o"]
+
+[ext_resource type="Texture2D" uid="uid://cpk0ip8p2gwmh" path="res://assets/Map/SecondPhase.png" id="1_5esc1"]
+[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/Player.tscn" id="2_74go0"]
+[ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="3_vb23r"]
+
+[node name="SecondPhase" type="Node2D"]
+scale = Vector2(1.10776, 1.12513)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(578.5, 324.5)
+scale = Vector2(0.582157, 0.590993)
+texture = ExtResource("1_5esc1")
+
+[node name="Player" parent="." instance=ExtResource("2_74go0")]
+position = Vector2(75, 425)
+scale = Vector2(4.9412, 4.91408)
+
+[node name="floor" type="StaticBody2D" parent="."]
+scale = Vector2(1.00225, 1.00642)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor"]
+position = Vector2(1347, 535)
+scale = Vector2(7.85882, 1)
+polygon = PackedVector2Array(-56.7515, -245, -42.6273, -246, -32.7021, -246, -29.9027, -196, -39.8279, -196, -54.8428, -195)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="floor"]
+position = Vector2(988, 418)
+scale = Vector2(7.85882, 1)
+polygon = PackedVector2Array(-125.591, -280, -114.903, -279, -107.777, -315, -41.2276, -317, -41.1003, -263, -107.141, -265, -116.175, -234, -125.591, -235)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="floor"]
+position = Vector2(939.89, 765.088)
+scale = Vector2(7.85882, 1)
+polygon = PackedVector2Array(-119.738, -255, -3.43563, -260, -3.30838, -206, -119.102, -205)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="floor"]
+position = Vector2(1673, 706)
+scale = Vector2(7.85882, 1)
+polygon = PackedVector2Array(-71.6393, -265, -65.7859, -262, -66.0405, -218, -71.1303, -215)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="floor"]
+position = Vector2(1345.98, 592.198)
+scale = Vector2(7.87216, 0.927774)
+polygon = PackedVector2Array(-56.0215, -308.44, -41.319, -269.885, -30.5457, -269.885, -29.9027, -196, -30.0387, -77.11, -55.6412, -80.323)
+
+[node name="AreaForaDoJogo" type="Node" parent="."]
+script = ExtResource("3_vb23r")
+
+[node name="LimiteInicial" type="StaticBody2D" parent="AreaForaDoJogo"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/LimiteInicial"]
+position = Vector2(508, 590)
+scale = Vector2(7.56343, 0.943396)
+polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
+
+[node name="Area2D" type="Area2D" parent="AreaForaDoJogo"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/Area2D"]
+position = Vector2(133, 103)
+polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
+
+[connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]

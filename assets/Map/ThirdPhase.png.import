@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cls4wn5myd74d"
-path="res://.godot/imported/Background_0.png-830dd26a4380e7004b3d18d4027a2b57.ctex"
+uid="uid://d060m8rkakl0u"
+path="res://.godot/imported/ThirdPhase.png-bedf8c672fa15edf38ee7f5dc0447e0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Map/Background_0.png"
-dest_files=["res://.godot/imported/Background_0.png-830dd26a4380e7004b3d18d4027a2b57.ctex"]
+source_file="res://assets/Map/ThirdPhase.png"
+dest_files=["res://.godot/imported/ThirdPhase.png-bedf8c672fa15edf38ee7f5dc0447e0b.ctex"]
 
 [params]
 
