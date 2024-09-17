@@ -1,15 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bterf0xuop32e"]
+[gd_scene load_steps=4 format=3 uid="uid://bterf0xuop32e"]
 
 [ext_resource type="Texture2D" uid="uid://ptqc2yguk23u" path="res://assets/Map/moon.png" id="1_5tcli"]
 [ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_y617p"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_sg51i"]
-a = Vector2(75.7111, -161)
-b = Vector2(10.1796, -172)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_b6bx3"]
-a = Vector2(9.70261, -172)
-b = Vector2(-18.4506, -67)
+[ext_resource type="PackedScene" uid="uid://b350ay2asc3mm" path="res://enemy/enemy.tscn" id="3_f6rkq"]
 
 [node name="FirstPhase" type="Node2D"]
 metadata/_edit_lock_ = true
@@ -22,17 +15,10 @@ texture = ExtResource("1_5tcli")
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(508, 590)
 scale = Vector2(7.85882, 1)
+collision_layer = 137
 
-[node name="collision1" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("SegmentShape2D_sg51i")
-
-[node name="collision2" type="CollisionShape2D" parent="Floor"]
-scale = Vector2(-0.858409, 0.390788)
-shape = SubResource("SegmentShape2D_sg51i")
-
-[node name="collision3" type="CollisionShape2D" parent="Floor"]
-scale = Vector2(1.00982, 1)
-shape = SubResource("SegmentShape2D_b6bx3")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(-66.1677, -81, -18.0689, -84, 5.34431, -184, 81.1827, -184, 81.1827, -156, 5.47156, -160, -16.7964, -65, -66.0405, -55)
 
 [node name="Player" parent="." instance=ExtResource("2_y617p")]
 position = Vector2(75, 425)
@@ -44,3 +30,11 @@ scale = Vector2(4.9412, 4.91408)
 position = Vector2(508, 590)
 scale = Vector2(7.85882, 1)
 polygon = PackedVector2Array(-54.5883, -261, -42.5, -262, -30.4117, -309, -26.7216, -309, -22.0135, -309, -11.9611, -313, -12.0883, -279, -29.7755, -267, -42.5, -231, -54.7156, -231)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="viga"]
+position = Vector2(996, 413)
+scale = Vector2(7.85882, 1)
+polygon = PackedVector2Array(-54.5883, -261, -36.774, -262, -29.9027, -291, -27.2306, -290, -21.25, -289, 12.5973, -286, 13.1063, -264, -29.7755, -267, -36.3922, -237, -54.7156, -231)
+
+[node name="Node2D" parent="." instance=ExtResource("3_f6rkq")]
+position = Vector2(1079, 295)

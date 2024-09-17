@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cw7oidbwayfgj"]
+[gd_scene load_steps=39 format=3 uid="uid://cw7oidbwayfgj"]
 
 [ext_resource type="Script" path="res://player/Scripts/Player.gd" id="1_4oj7c"]
 [ext_resource type="Texture2D" uid="uid://jhmkg8waq2r3" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-00.png" id="2_83xhv"]
@@ -16,11 +16,16 @@
 [ext_resource type="Texture2D" uid="uid://dp4aqba3pq0ok" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-00.png" id="10_6tums"]
 [ext_resource type="Texture2D" uid="uid://bkj2mrn8e3j62" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack2-00.png" id="10_m5kmp"]
 [ext_resource type="Texture2D" uid="uid://c2o6al1vq8o02" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-01.png" id="11_0fmuh"]
+[ext_resource type="Texture2D" uid="uid://c5gh285fe84ki" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack1-00.png" id="11_m7268"]
 [ext_resource type="Texture2D" uid="uid://vogsqvactydw" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-02.png" id="12_15lpf"]
+[ext_resource type="Texture2D" uid="uid://cjwvfya1kdjd7" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack1-01.png" id="12_c744m"]
 [ext_resource type="Texture2D" uid="uid://cfa1dqtgy64pb" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-03.png" id="13_0ubi8"]
+[ext_resource type="Texture2D" uid="uid://dhq5dskbgvhuv" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack1-02.png" id="13_f1g8e"]
+[ext_resource type="Texture2D" uid="uid://b2hu4xon0gxp8" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack1-03.png" id="14_05jqe"]
 [ext_resource type="Texture2D" uid="uid://cn8svct536s73" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-04.png" id="14_ep20c"]
 [ext_resource type="Texture2D" uid="uid://k1r4umhb2013" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-air-attack1-00.png" id="15_51dwn"]
 [ext_resource type="Texture2D" uid="uid://c6rcj7ttg3rix" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-run-05.png" id="15_81uhg"]
+[ext_resource type="Texture2D" uid="uid://d4mb0kexonqwg" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack1-04.png" id="15_od5fy"]
 [ext_resource type="Script" path="res://player/state.gd" id="16_58dem"]
 [ext_resource type="Texture2D" uid="uid://4u7lgm34gl5t" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-air-attack1-01.png" id="16_cggb3"]
 [ext_resource type="Script" path="res://player/state_machine.gd" id="16_m280w"]
@@ -70,6 +75,26 @@ animations = [{
 }],
 "loop": false,
 "name": &"atack_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_m7268")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_c744m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_f1g8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_05jqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_od5fy")
+}],
+"loop": true,
+"name": &"atack_2",
 "speed": 5.0
 }, {
 "frames": [],
@@ -151,13 +176,15 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 9
+collision_mask = 128
 script = ExtResource("1_4oj7c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"drop"
+animation = &"atack_2"
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521

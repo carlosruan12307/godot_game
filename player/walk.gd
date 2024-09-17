@@ -6,6 +6,7 @@ class_name Walk
 @onready var inputHandle = $"../Input"
 # Called when the node enters the scene tree for the first time.
 func Enter():
+	print("why")
 	if animation.animation != "air_atack":
 		animation.play("run")
 	elif player.velocity.y == 0:
