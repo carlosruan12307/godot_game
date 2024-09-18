@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmcrxdsc6bgbf" path="res://itens/potions/Scenes/PowerUpPotion.tscn" id="1_f57ef"]
 [ext_resource type="PackedScene" uid="uid://bmfkmb0im2i8t" path="res://itens/potions/Scenes/PoisonPotion.tscn" id="2_rqbxl"]
 [ext_resource type="Texture2D" uid="uid://ywjg2nhac51g" path="res://assets/icon.svg" id="3_5pn2g"]
-[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/Player.tscn" id="4_xiyqm"]
+[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="4_xiyqm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3au7"]
 size = Vector2(275.903, 182)

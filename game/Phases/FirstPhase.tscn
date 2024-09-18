@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bterf0xuop32e"]
 
 [ext_resource type="Texture2D" uid="uid://ptqc2yguk23u" path="res://assets/Map/moon.png" id="1_5tcli"]
-[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/Player.tscn" id="2_y617p"]
+[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_y617p"]
 [ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="3_qyqyt"]
 
 [node name="FirstPhase" type="Node2D"]

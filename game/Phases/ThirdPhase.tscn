@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwbub4vxat61s"]
 
 [ext_resource type="Texture2D" uid="uid://d060m8rkakl0u" path="res://assets/Map/ThirdPhase.png" id="1_sthq7"]
-[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/Player.tscn" id="2_sj1ql"]
+[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_sj1ql"]
 [ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="3_qdnm7"]
 
 [node name="ThirdPhase" type="Node2D"]
