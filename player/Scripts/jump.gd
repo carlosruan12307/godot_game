@@ -8,12 +8,16 @@ class_name Jump
 const JUMP_VELOCITY = -700.0
 var jump_started = false
 func Enter():
-	player.velocity.x = 0
-	animation.play("jump")
-	await get_tree().create_timer(.5).timeout
-	player.velocity.y = JUMP_VELOCITY
+	if animation.animation == "air_atack":
+		animation.play("jump")
+		animation.set_frame(5)
+	else:
+		
+		animation.play("jump")
+		await get_tree().create_timer(.5).timeout
+		player.velocity.y = JUMP_VELOCITY
 
-	jump_started = true
+		jump_started = true
 	
 	pass
 func Exit():
@@ -27,6 +31,8 @@ func _physics_process(delta: float) -> void:
 
 func process_state(delta: float) -> void:
 	inputHandle.inputHandlez(self,transitioned,"","","","")
+	if animation.animation == "jump" and !jump_started:
+		player.velocity.x = 0
 	if Input.is_action_pressed("Z") and jump_started:
 		
 		transitioned.emit(self,"atack")

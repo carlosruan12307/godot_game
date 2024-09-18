@@ -18,6 +18,7 @@ scale = Vector2(1.65086, 2.09373)
 
 [node name="floor" type="StaticBody2D" parent="."]
 scale = Vector2(1.00225, 1.00642)
+collision_layer = 137
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor"]
 position = Vector2(901.975, 467.995)
