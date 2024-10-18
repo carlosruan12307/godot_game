@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://dgn8dreq4r5h4"]
+
+[ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="1_brk4k"]
+[ext_resource type="Script" path="res://game/menu.gd" id="1_itqm1"]
+[ext_resource type="Texture2D" uid="uid://b1s0ugspcxsm6" path="res://assets/Menu Buttons/NovoJogo.png" id="2_4mcd1"]
+[ext_resource type="Texture2D" uid="uid://cr7ed5gdolo1u" path="res://assets/Menu Buttons/Options.png" id="3_vlb4y"]
+[ext_resource type="Texture2D" uid="uid://cfby888maxq1" path="res://assets/Menu Buttons/Partidas.png" id="4_fj6x3"]
+
+[node name="Menu" type="Node2D"]
+scale = Vector2(6.34213, 2.58277)
+script = ExtResource("1_itqm1")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+position = Vector2(98.3305, 128.01)
+scale = Vector2(0.196533, 0.394733)
+texture = ExtResource("1_brk4k")
+
+[node name="BotaoIniciar" type="Node" parent="."]
+
+[node name="StartButton" type="Button" parent="BotaoIniciar"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.278
+anchor_right = 0.5
+anchor_bottom = 0.278
+offset_left = -148.0
+offset_top = -62.16
+offset_right = 147.0
+offset_bottom = 61.84
+
+[node name="NewGameBackground" type="Sprite2D" parent="BotaoIniciar/StartButton"]
+position = Vector2(147, 60)
+scale = Vector2(0.508738, 0.696663)
+texture = ExtResource("2_4mcd1")
+
+[node name="BotaoOptions" type="Node" parent="."]
+
+[node name="OptionsButton" type="Button" parent="BotaoOptions"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.278
+anchor_right = 0.5
+anchor_bottom = 0.278
+offset_left = -156.0
+offset_top = 145.84
+offset_right = 141.0
+offset_bottom = 271.84
+
+[node name="OptionsBackground" type="Sprite2D" parent="BotaoOptions/OptionsButton"]
+position = Vector2(149, 60)
+scale = Vector2(0.508738, 0.696663)
+texture = ExtResource("3_vlb4y")
+
+[node name="BotaoHistorico" type="Node" parent="."]
+
+[node name="BotaoHistoricoButton" type="Button" parent="BotaoHistorico"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.278
+anchor_right = 0.5
+anchor_bottom = 0.278
+offset_left = 399.0
+offset_top = 262.84
+offset_right = 480.0
+offset_bottom = 384.84
+
+[node name="OptionsBackground" type="Sprite2D" parent="BotaoHistorico/BotaoHistoricoButton"]
+position = Vector2(43, 61)
+scale = Vector2(0.508738, 0.696663)
+texture = ExtResource("4_fj6x3")
+
+[connection signal="pressed" from="BotaoIniciar/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="BotaoOptions/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="BotaoHistorico/BotaoHistoricoButton" to="." method="_on_botao_historico_button_pressed"]
