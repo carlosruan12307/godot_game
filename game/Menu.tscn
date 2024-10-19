@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dgn8dreq4r5h4"]
 
 [ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="1_brk4k"]
-[ext_resource type="Script" path="res://game/menu.gd" id="1_itqm1"]
+[ext_resource type="Script" path="res://game/Scripts/Menu.gd" id="1_itqm1"]
 [ext_resource type="Texture2D" uid="uid://b1s0ugspcxsm6" path="res://assets/Menu Buttons/NovoJogo.png" id="2_4mcd1"]
 [ext_resource type="Texture2D" uid="uid://cr7ed5gdolo1u" path="res://assets/Menu Buttons/Options.png" id="3_vlb4y"]
 [ext_resource type="Texture2D" uid="uid://cfby888maxq1" path="res://assets/Menu Buttons/Partidas.png" id="4_fj6x3"]
