@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bterf0xuop32e"]
+[gd_scene load_steps=5 format=3 uid="uid://bterf0xuop32e"]
 
 [ext_resource type="Texture2D" uid="uid://ptqc2yguk23u" path="res://assets/Map/moon.png" id="1_5tcli"]
 [ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_y617p"]
-[ext_resource type="PackedScene" path="res://enemy/enemy.tscn" id="3_f6rkq"]
+[ext_resource type="PackedScene" uid="uid://b350ay2asc3mm" path="res://enemy/enemy.tscn" id="3_f6rkq"]
+[ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="4_av6i2"]
 
 [node name="FirstPhase" type="Node2D"]
-metadata/_edit_lock_ = true
+scale = Vector2(1.12164, 1.11535)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(564, 314)
 scale = Vector2(0.382645, 0.39992)
 texture = ExtResource("1_5tcli")
-metadata/_edit_lock_ = true
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(508, 590)
@@ -21,21 +21,35 @@ collision_layer = 137
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
 polygon = PackedVector2Array(-66.1677, -81, -18.0689, -84, 5.34431, -184, 81.1827, -184, 81.1827, -156, 5.47156, -160, -16.7964, -65, -66.0405, -55)
 
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(-54.5883, -261, -42.5, -262, -30.4117, -309, -26.7216, -309, -22.0135, -309, -11.9611, -313, -12.0883, -279, -29.7755, -267, -42.5, -231, -54.7156, -231)
+
+[node name="viga#CollisionPolygon2D2" type="CollisionPolygon2D" parent="Floor"]
+position = Vector2(62.0958, -177)
+polygon = PackedVector2Array(-54.5883, -261, -36.774, -262, -29.9027, -291, -27.2306, -290, -21.25, -289, 12.5973, -286, 13.1063, -264, -29.7755, -267, -36.3922, -237, -54.7156, -231)
+
 [node name="Player" parent="." instance=ExtResource("2_y617p")]
 position = Vector2(75, 425)
 scale = Vector2(4.9412, 4.91408)
 
-[node name="floor" type="StaticBody2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor"]
-position = Vector2(508, 590)
-scale = Vector2(7.85882, 1)
-polygon = PackedVector2Array(-54.5883, -261, -42.5, -262, -30.4117, -309, -26.7216, -309, -22.0135, -309, -11.9611, -313, -12.0883, -279, -29.7755, -267, -42.5, -231, -54.7156, -231)
-
-[node name="viga#CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
-position = Vector2(996, 413)
-scale = Vector2(7.85882, 1)
-polygon = PackedVector2Array(-54.5883, -261, -36.774, -262, -29.9027, -291, -27.2306, -290, -21.25, -289, 12.5973, -286, 13.1063, -264, -29.7755, -267, -36.3922, -237, -54.7156, -231)
-
 [node name="Node2D" parent="." instance=ExtResource("3_f6rkq")]
 position = Vector2(1079, 295)
+
+[node name="AreaForaDoJogo" type="Node" parent="."]
+script = ExtResource("4_av6i2")
+
+[node name="LimiteInicial" type="StaticBody2D" parent="AreaForaDoJogo"]
+collision_layer = 137
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/LimiteInicial"]
+position = Vector2(494, 566)
+scale = Vector2(7.56343, 0.943396)
+polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
+
+[node name="Area2D" type="Area2D" parent="AreaForaDoJogo"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/Area2D"]
+position = Vector2(121, 3)
+polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
+
+[connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]
