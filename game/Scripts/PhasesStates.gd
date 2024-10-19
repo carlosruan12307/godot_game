@@ -5,12 +5,17 @@ const Phases = {
 	"FIRST_PHASE" : {"PATH": "res://game/Phases/FirstPhase.tscn"},
 	"SECOND_PHASE" : {"PATH": "res://game/Phases/SecondPhase.tscn"},
 	"THIRD_PHASE" : {"PATH": "res://game/Phases/ThirdPhase.tscn"},
+	"OPTIONS_MENU": {"PATH": "res://game/Menus/OptionsMenu.tscn"},
+	"RANKING_MENU": {"PATH": "res://game/Menus/RankingMenu.tscn"},
+	"PRINCIPAL_MENU": {"PATH": "res://game/Menus/PrincipalMenu.tscn"},
 	"BOSS_PHASE" : {"PATH": "TODO"}
 }
 
 var currentPhase = Phases.FIRST_PHASE
 
 func setSceneSelected(phase) -> void: get_tree().change_scene_to_file(phase.PATH)
+	
+func comeBackPrincipallMenu(): setSceneSelected(Phases.PRINCIPAL_MENU)
 
 func setNextScene(nextPhase) -> void: 
 	if(!nextPhase.PATH== 'TODO'): 
