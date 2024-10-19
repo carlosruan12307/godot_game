@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://cybgxk54edobd"]
+
+[ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="1_pn7ws"]
+[ext_resource type="Script" path="res://game/Scripts/Options.gd" id="1_sft5a"]
+[ext_resource type="Texture2D" uid="uid://d3luameo685v2" path="res://assets/Menu Buttons/Voltar.png" id="3_pclps"]
+
+[node name="OptionsMenu" type="Node2D"]
+script = ExtResource("1_sft5a")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+position = Vector2(610, 336.51)
+scale = Vector2(1.28399, 1.03157)
+texture = ExtResource("1_pn7ws")
+
+[node name="OptionsLabelName" type="Label" parent="."]
+offset_left = 210.0
+offset_top = 63.0
+offset_right = 1054.0
+offset_bottom = 196.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 81
+text = "Selecione o tema "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotaoVoltar" type="Node" parent="."]
+
+[node name="VoltarButton" type="Button" parent="BotaoVoltar"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.278
+anchor_right = 0.5
+anchor_bottom = 0.278
+offset_left = -528.0
+offset_top = 318.84
+offset_right = -342.0
+offset_bottom = 413.84
+
+[node name="VoltarBackground" type="Sprite2D" parent="BotaoVoltar/VoltarButton"]
+position = Vector2(99, 46)
+scale = Vector2(0.346172, 0.489841)
+texture = ExtResource("3_pclps")
+
+[connection signal="pressed" from="BotaoVoltar/VoltarButton" to="." method="_on_voltar_button_pressed"]

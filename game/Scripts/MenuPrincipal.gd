@@ -14,16 +14,7 @@ func _process(delta: float) -> void:
 
 func _on_start_button_pressed() -> void: PhasesStates.setSceneSelected(phases.FIRST_PHASE)
 
+func _on_options_button_pressed() -> void: PhasesStates.setSceneSelected(phases.OPTIONS_MENU)
 
-func _on_options_button_pressed() -> void:
-	#TODO
-	print("Botao de options iniciado")
-	pass # Replace with function body.
-
-
-func _on_botao_historico_button_pressed() -> void:
-	#TODO
-	print("Botao de historico iniciado")
-	pass # Replace with function body.
-	
+func _on_botao_historico_button_pressed() -> void: PhasesStates.setSceneSelected(phases.RANKING_MENU)
 	

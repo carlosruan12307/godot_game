@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh0wc1dboukpg"]
+
+[ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="1_m4bpd"]
+[ext_resource type="Script" path="res://game/Scripts/Ranking.gd" id="1_x2rav"]
+[ext_resource type="Texture2D" uid="uid://d3luameo685v2" path="res://assets/Menu Buttons/Voltar.png" id="3_65tdy"]
+
+[node name="RankingMenu" type="Node2D"]
+script = ExtResource("1_x2rav")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+position = Vector2(609.967, 331.01)
+scale = Vector2(1.28394, 1.02071)
+texture = ExtResource("1_m4bpd")
+
+[node name="RankingLabelName" type="Label" parent="."]
+offset_left = 210.0
+offset_top = 63.0
+offset_right = 1054.0
+offset_bottom = 196.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 81
+text = "Historico de partidas"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotaoVoltar" type="Node" parent="."]
+
+[node name="VoltarButton" type="Button" parent="BotaoVoltar"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.278
+anchor_right = 0.5
+anchor_bottom = 0.278
+offset_left = -528.0
+offset_top = 318.84
+offset_right = -342.0
+offset_bottom = 413.84
+
+[node name="VoltarBackground" type="Sprite2D" parent="BotaoVoltar/VoltarButton"]
+position = Vector2(99, 46)
+scale = Vector2(0.346172, 0.489841)
+texture = ExtResource("3_65tdy")
+
+[connection signal="pressed" from="BotaoVoltar/VoltarButton" to="." method="_on_voltar_button_pressed"]
