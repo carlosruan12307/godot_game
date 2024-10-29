@@ -8,7 +8,6 @@ class_name Idle
 const SPEED = 300.0
 # Called when the node enters the scene tree for the first time.
 func Enter():
-	print("strange")
 	animation.play("idle")
 	pass
 func Exit():

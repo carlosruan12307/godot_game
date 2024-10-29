@@ -36,6 +36,8 @@ Item="Grupo dos itens"
 Buff="Objeto causará buff no personagem"
 Debuff="Item causará debuff no personagem"
 Player=""
+Wall=""
+Enemy=""
 
 [input]
 

@@ -21,7 +21,7 @@ func Enter():
 		player.move_and_slide()
 		
 		print(player.velocity.x)
-		animation.play("atack_2")
+		animation.play("atack_3")
 	if animation.animation == "idle" :
 		animation.play("atack_1")
 	elif animation.animation == "jump":

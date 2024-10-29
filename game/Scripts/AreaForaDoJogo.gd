@@ -7,6 +7,7 @@ func _ready() -> void: pass
 func _process(delta: float) -> void: pass
 
 func goToNextArea(body: Node2D) -> void:
+	
 	if PlayerStatus.thisBodyIsPlayer(body): handleNextPhase(PhasesStates.currentPhase)
 	
 

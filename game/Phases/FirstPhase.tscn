@@ -1,9 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://bterf0xuop32e"]
+[gd_scene load_steps=13 format=3 uid="uid://bterf0xuop32e"]
 
 [ext_resource type="Texture2D" uid="uid://ptqc2yguk23u" path="res://assets/Map/moon.png" id="1_5tcli"]
 [ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_y617p"]
 [ext_resource type="PackedScene" uid="uid://b350ay2asc3mm" path="res://enemy/enemy.tscn" id="3_f6rkq"]
 [ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="4_av6i2"]
+[ext_resource type="Texture2D" uid="uid://bnhikcdgnjlg8" path="res://assets/EnemysSprites/Lightning Strike.png" id="5_6go8w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nou0"]
+atlas = ExtResource("5_6go8w")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kahh"]
+atlas = ExtResource("5_6go8w")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3x6o"]
+atlas = ExtResource("5_6go8w")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqly8"]
+atlas = ExtResource("5_6go8w")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu8rv"]
+atlas = ExtResource("5_6go8w")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dinqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nou0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kahh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3x6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqly8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu8rv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_miual"]
+size = Vector2(38.3367, 299.458)
 
 [node name="FirstPhase" type="Node2D"]
 scale = Vector2(1.12164, 1.11535)
@@ -22,7 +69,7 @@ collision_layer = 137
 polygon = PackedVector2Array(-66.1677, -81, -18.0689, -84, 5.34431, -184, 81.1827, -184, 81.1827, -156, 5.47156, -160, -16.7964, -65, -66.0405, -55)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Floor"]
-polygon = PackedVector2Array(-54.5883, -261, -42.5, -262, -30.4117, -309, -26.7216, -309, -22.0135, -309, -11.9611, -313, -12.0883, -279, -29.7755, -267, -42.5, -231, -54.7156, -231)
+polygon = PackedVector2Array(-54.5883, -261, -42.5, -262, -30.2666, -310.267, -30.1532, -310.267, -11.9611, -313, -12.0018, -270.818, -29.4725, -275.301, -42.5, -231, -54.7156, -231)
 
 [node name="viga#CollisionPolygon2D2" type="CollisionPolygon2D" parent="Floor"]
 position = Vector2(62.0958, -177)
@@ -32,13 +79,31 @@ polygon = PackedVector2Array(-54.5883, -261, -36.774, -262, -29.9027, -291, -27.
 position = Vector2(75, 425)
 scale = Vector2(4.9412, 4.91408)
 
-[node name="Node2D" parent="." instance=ExtResource("3_f6rkq")]
+[node name="Node2D" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
 position = Vector2(1079, 295)
+collision_layer = 4
+collision_mask = 1
+distancia = 1000
+SPEED = 200
+
+[node name="Node2D3" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(940.587, 15.2419)
+collision_layer = 4
+collision_mask = 1
+distancia = 300
+SPEED = 30
+
+[node name="Node2D2" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(645.483, 44.829)
+collision_layer = 64
+collision_mask = 1
+distancia = 9000
+SPEED = 300
 
 [node name="AreaForaDoJogo" type="Node" parent="."]
 script = ExtResource("4_av6i2")
 
-[node name="LimiteInicial" type="StaticBody2D" parent="AreaForaDoJogo"]
+[node name="LimiteInicial" type="StaticBody2D" parent="AreaForaDoJogo" groups=["Wall"]]
 collision_layer = 137
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/LimiteInicial"]
@@ -46,10 +111,36 @@ position = Vector2(494, 566)
 scale = Vector2(7.56343, 0.943396)
 polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
 
-[node name="Area2D" type="Area2D" parent="AreaForaDoJogo"]
+[node name="LimiteInicial2" type="StaticBody2D" parent="AreaForaDoJogo" groups=["Wall"]]
+collision_layer = 137
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/LimiteInicial2"]
+position = Vector2(1805, 573)
+scale = Vector2(7.56343, 0.943396)
+polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
+
+[node name="Area2D" type="Area2D" parent="AreaForaDoJogo" groups=["Wall"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/Area2D"]
 position = Vector2(121, 3)
 polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
 
+[node name="StaticBody2D" type="Area2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
+scale = Vector2(1, 1)
+
+[node name="lightning" type="AnimatedSprite2D" parent="StaticBody2D/Sprite2D2"]
+position = Vector2(293.32, -247.456)
+scale = Vector2(5.90653, 9.34188)
+sprite_frames = SubResource("SpriteFrames_dinqf")
+frame = 3
+frame_progress = 0.013884
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(290.2, -245.663)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_miual")
+
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]
+[connection signal="body_entered" from="StaticBody2D" to="Player" method="_on_static_body_2d_body_entered"]
