@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cw7oidbwayfgj"]
+[gd_scene load_steps=53 format=3 uid="uid://cw7oidbwayfgj"]
 
 [ext_resource type="Script" path="res://player/Scripts/Player.gd" id="1_4oj7c"]
 [ext_resource type="Texture2D" uid="uid://jhmkg8waq2r3" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-00.png" id="2_83xhv"]
@@ -35,10 +35,17 @@
 [ext_resource type="Texture2D" uid="uid://ch3i2utxcb4os" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack3-03.png" id="19_p32e2"]
 [ext_resource type="Texture2D" uid="uid://g5k328airb27" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack3-04.png" id="20_5ydem"]
 [ext_resource type="Texture2D" uid="uid://kgghjoro86uu" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-attack3-05.png" id="21_iiad1"]
+[ext_resource type="Texture2D" uid="uid://b6w0og4xkhmki" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-die-00.png" id="22_7rh16"]
+[ext_resource type="Texture2D" uid="uid://celvf8xe0s3p7" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-die-01.png" id="23_p0wbl"]
+[ext_resource type="Texture2D" uid="uid://bwqekfm4hr7vl" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-die-02.png" id="24_u60oj"]
 [ext_resource type="Script" path="res://player/Scripts/state_machine.gd" id="25_dldex"]
+[ext_resource type="Texture2D" uid="uid://btajkewbp4ap1" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-die-03.png" id="25_lp4op"]
 [ext_resource type="Script" path="res://player/Scripts/state.gd" id="26_34jm4"]
+[ext_resource type="Texture2D" uid="uid://7owl3f3wnf48" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-die-04.png" id="26_sicey"]
+[ext_resource type="Texture2D" uid="uid://chfoba2d10jup" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-die-05.png" id="27_6qbrp"]
 [ext_resource type="Script" path="res://player/Scripts/idle.gd" id="27_prnfe"]
 [ext_resource type="Script" path="res://player/Scripts/walk.gd" id="28_1y68m"]
+[ext_resource type="Texture2D" uid="uid://betffrw43uisu" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-die-06.png" id="28_etk28"]
 [ext_resource type="Script" path="res://player/Scripts/jump.gd" id="29_6baul"]
 [ext_resource type="Script" path="res://player/Scripts/input.gd" id="30_d0470"]
 [ext_resource type="Script" path="res://player/Scripts/atack_1.gd" id="31_hktnr"]
@@ -126,6 +133,32 @@ animations = [{
 "name": &"atack_3",
 "speed": 5.0
 }, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_7rh16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_p0wbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_u60oj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_lp4op")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_sicey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_6qbrp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_etk28")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [],
 "loop": true,
 "name": &"drop",
@@ -204,6 +237,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f0qg"]
+bg_color = Color(0, 0.704076, 0.542514, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 9
 collision_mask = 128
@@ -214,7 +250,7 @@ script = ExtResource("1_4oj7c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 scale = Vector2(1.00255, 1)
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"idle"
+animation = &"dead"
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521
@@ -247,6 +283,18 @@ script = ExtResource("31_hktnr")
 
 [node name="ModelState" type="Node" parent="State Machine"]
 script = ExtResource("32_d2o8s")
+
+[node name="ProgressBarPlayer" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -12.0
+offset_top = -13.0
+offset_right = -8.0
+offset_bottom = 14.0
+rotation = -1.5708
+theme_override_styles/fill = SubResource("StyleBoxFlat_1f0qg")
+value = 100.0
+fill_mode = 2
+show_percentage = false
 
 [connection signal="animation_changed" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -76,29 +76,30 @@ position = Vector2(62.0958, -177)
 polygon = PackedVector2Array(-54.5883, -261, -36.774, -262, -29.9027, -291, -27.2306, -290, -21.25, -289, 12.5973, -286, 13.1063, -264, -29.7755, -267, -36.3922, -237, -54.7156, -231)
 
 [node name="Player" parent="." instance=ExtResource("2_y617p")]
+unique_name_in_owner = true
 position = Vector2(75, 425)
 scale = Vector2(4.9412, 4.91408)
 
-[node name="Node2D" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+[node name="Slime1" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
 position = Vector2(1079, 295)
 collision_layer = 4
 collision_mask = 1
 distancia = 1000
 SPEED = 200
 
-[node name="Node2D3" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+[node name="Slime2" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
 position = Vector2(940.587, 15.2419)
 collision_layer = 4
 collision_mask = 1
-distancia = 300
-SPEED = 30
+distancia = 1000
+SPEED = 300
 
-[node name="Node2D2" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+[node name="Slime3" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
 position = Vector2(645.483, 44.829)
 collision_layer = 64
 collision_mask = 1
-distancia = 9000
-SPEED = 300
+distancia = 1000
+SPEED = 100
 
 [node name="AreaForaDoJogo" type="Node" parent="."]
 script = ExtResource("4_av6i2")
@@ -128,7 +129,6 @@ polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
 [node name="StaticBody2D" type="Area2D" parent="."]
 
 [node name="Sprite2D2" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(1, 1)
 
 [node name="lightning" type="AnimatedSprite2D" parent="StaticBody2D/Sprite2D2"]
 position = Vector2(293.32, -247.456)
@@ -139,7 +139,6 @@ frame_progress = 0.013884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(290.2, -245.663)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_miual")
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]

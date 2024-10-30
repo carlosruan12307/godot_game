@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b350ay2asc3mm"]
+[gd_scene load_steps=41 format=3 uid="uid://b350ay2asc3mm"]
 
 [ext_resource type="Script" path="res://enemy/enemy.gd" id="1_iet3h"]
 [ext_resource type="Texture2D" uid="uid://dkoxquneep3e3" path="res://assets/EnemysSprites/Green_Slime/Idle.png" id="2_fd6ib"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://etwm2ulbedfg" path="res://assets/EnemysSprites/Green_Slime/Attack_2.png" id="3_hlc08"]
 [ext_resource type="Texture2D" uid="uid://b8u6mhdcltheq" path="res://assets/EnemysSprites/Green_Slime/Run.png" id="3_k1sjj"]
 [ext_resource type="Texture2D" uid="uid://byjavfp53ueoh" path="res://assets/EnemysSprites/Green_Slime/Attack_3.png" id="4_1xg87"]
+[ext_resource type="Script" path="res://enemy/state_machine_enemy.gd" id="7_4lv03"]
+[ext_resource type="Script" path="res://enemy/state_enemy.gd" id="8_8cdqx"]
+[ext_resource type="Script" path="res://enemy/walk_enemy.gd" id="9_1btbf"]
+[ext_resource type="Script" path="res://enemy/atack_enemy.gd" id="10_y7u21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8pbs"]
 atlas = ExtResource("2_t1f4e")
@@ -221,7 +225,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Node2D" type="CharacterBody2D"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lr2st"]
+bg_color = Color(1.54018e-06, 0.726675, 0.152508, 1)
+
+[node name="Enemy" type="CharacterBody2D"]
 collision_mask = 9
 script = ExtResource("1_iet3h")
 
@@ -239,6 +246,30 @@ polygon = PackedVector2Array(-24.1609, 61.125, -22.1609, 69.125, -9.16094, 70.12
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(6, 63)
-target_position = Vector2(-58, -28)
+target_position = Vector2(-30, -9)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -9.0
+offset_top = 11.0
+offset_right = -5.0
+offset_bottom = 38.0
+rotation = -1.57217
+theme_override_styles/fill = SubResource("StyleBoxFlat_lr2st")
+value = 100.0
+fill_mode = 2
+show_percentage = false
+
+[node name="StateMachineEnemy" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_4lv03")
+initial_state = NodePath("WalkEnemy")
+
+[node name="StateEnemy" type="Node" parent="StateMachineEnemy"]
+script = ExtResource("8_8cdqx")
+
+[node name="WalkEnemy" type="Node" parent="StateMachineEnemy"]
+script = ExtResource("9_1btbf")
+
+[node name="AtackEnemy" type="Node" parent="StateMachineEnemy"]
+script = ExtResource("10_y7u21")
 
 [connection signal="animation_looped" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

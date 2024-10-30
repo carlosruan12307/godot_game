@@ -9,7 +9,8 @@ const SPEED = 200.0  # Velocidade de movimentação no chão
 var timeLightningTwo = 0;
 var timeLightningFinal = 0;
 var randomLightning = 1
-
+@onready var animationP = $Sprite2D/AnimatedSprite2D
+@onready var lifeBar = $ProgressBar
 func _ready() -> void:
 
 		scale = Vector2(3,3)
@@ -40,7 +41,7 @@ func _process(delta: float) -> void:
 			collisionLight.position.y = position.y -90
 			randomLightning = randomLightning * -1
 			lightningAnimation.play("default")
-	elif is_on_floor():
+	elif is_on_floor() and lightningAnimation:
 		lightningAnimation.visible = false
 		lightning.visible = false
 		collisionLight.visible = false
@@ -76,4 +77,18 @@ func _physics_process(delta: float) -> void:
 
 func _on_static_body_2d_body_entered(body: Node2D) -> void:
 	print("entrou")
+	pass # Replace with function body.
+
+
+
+
+
+func _on_animated_sprite_2d_animation_changed() -> void:
+
+	print("YEP ")
+	pass # Replace with function body.
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	print("morreu pra krl")
 	pass # Replace with function body.
