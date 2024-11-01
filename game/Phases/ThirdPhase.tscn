@@ -13,12 +13,14 @@ scale = Vector2(0.637182, 0.584419)
 texture = ExtResource("1_sthq7")
 
 [node name="Player" parent="." instance=ExtResource("2_sj1ql")]
-position = Vector2(114, 520)
+position = Vector2(190.029, 450.642)
 scale = Vector2(1.65086, 2.09373)
+collision_layer = 137
+collision_mask = 1
 
 [node name="floor" type="StaticBody2D" parent="."]
 scale = Vector2(1.00225, 1.00642)
-collision_layer = 137
+collision_layer = 9
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor"]
 position = Vector2(901.975, 467.995)

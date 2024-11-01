@@ -38,6 +38,7 @@ Debuff="Item causará debuff no personagem"
 Player=""
 Wall=""
 Enemy=""
+FirstPhase=""
 
 [input]
 

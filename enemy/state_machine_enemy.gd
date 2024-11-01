@@ -3,7 +3,7 @@ extends Node
 
 @export var initial_state : StateEnemy
 
-var current_state : StateEnemy
+@export var current_state : StateEnemy
 var states : Dictionary = {}
 
 
@@ -34,7 +34,6 @@ func on_child_transition(state: StateEnemy, new_state_name: String):
 		return
 	
 	var new_state = states.get(new_state_name.to_lower())
-	print(states)
 	if !new_state:
 		return
 	

@@ -60,7 +60,7 @@ polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0
 [node name="Area2D" type="Area2D" parent="AreaForaDoJogo"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/Area2D"]
-position = Vector2(133, 103)
+position = Vector2(-36, 35)
 polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]

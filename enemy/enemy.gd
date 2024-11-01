@@ -7,15 +7,17 @@ const JUMP_VELOCITY = -400.0
 var first = true
 var isAtak = false
 var Hit = 1
-@onready var state = get_node("../../Player/State Machine")
+
+@onready var state= %StateMachineEnemy
 @onready var colli = $CollisionPolygon2D
 @onready var sprite =  $Sprite2D
+@onready var lifeEnemy = %ProgressBar
 @onready var animation  = $Sprite2D/AnimatedSprite2D
 @onready var ray = $RayCast2D
 @onready var playerAnimation = get_node("../../Player/Sprite2D/AnimatedSprite2D")
 @onready var lifePlayer = get_node("../../Player/ProgressBar")
 var timeBeetweenDamage = 40
-@export var collisionp = false;
+
 var previous_normal = Vector2.UP  # Normal padrão
 var timeDamage = 0;
 @export var SPEED = 0
@@ -28,6 +30,9 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
+	if lifeEnemy.value == 0:
+		lifeEnemy.value = 1
+		state.current_state.transitioned.emit(state.current_state,"DeadEnemy")
 	pass
 
 		
@@ -37,7 +42,6 @@ func _physics_process(delta: float) -> void:
 	#if rayCollision is Node and rayCollision.is_in_group("Player"):
 		#collisionp = true
 		##if playerAnimation.animation == "atack_1":
-			##print("recebendo dano")
 		#timeDamage += 1;
 		#isAtak = true
 		#if timeDamage >= timeBeetweenDamage:
@@ -46,7 +50,6 @@ func _physics_process(delta: float) -> void:
 			#if lifePlayer.value == 0 && playerAnimation.animation != "dead":
 				#playerAnimation.play("dead")
 				#state.queue_free()
-				#print("dead")
 				#
 		#
 		#animation.play("atack1")
@@ -62,3 +65,7 @@ func _physics_process(delta: float) -> void:
 		
 	
 	
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	pass # Replace with function body.

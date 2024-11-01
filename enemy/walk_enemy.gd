@@ -15,7 +15,6 @@ var initial_position = 0;
 var previous_normal = Vector2.UP;
 # Called when the node enters the scene tree for the first time.
 func Enter():
-	print(lifePlayer)
 	animation.play("walk")
 	pass
 func _ready() -> void:
@@ -41,9 +40,9 @@ func process_state(delta: float) -> void:
 		animation.scale.x = animation.scale.x * -1
 		ray.scale.x = ray.scale.x * -1 
 		enemy.velocity.x = enemy.SPEED * direcao
-	else:
-
-		enemy.collisionp = false
+	#else:
+#
+		#enemy.collisionp = false
 		
 	
 	
@@ -56,7 +55,6 @@ func process_state(delta: float) -> void:
 	var distance_traveled = enemy.position.distance_to(initial_position)
 	
 	if distance_traveled >= enemy.distancia:
-		
 		# Inverte a direção quando atingir a distância máxima
 		direcao *= -1
 		animation.scale.x *= -1
