@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cw7oidbwayfgj"]
+[gd_scene load_steps=58 format=3 uid="uid://cw7oidbwayfgj"]
 
 [ext_resource type="Script" path="res://player/Scripts/Player.gd" id="1_4oj7c"]
 [ext_resource type="Texture2D" uid="uid://jhmkg8waq2r3" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-00.png" id="2_83xhv"]
@@ -54,6 +54,7 @@
 [ext_resource type="Texture2D" uid="uid://d1uyvyllm0rpa" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-hurt-02.png" id="31_i8dw3"]
 [ext_resource type="Script" path="res://player/Scripts/model_state.gd" id="32_d2o8s"]
 [ext_resource type="Script" path="res://player/hurt.gd" id="54_wx5da"]
+[ext_resource type="Texture2D" uid="uid://c3yo8ugrjcqqu" path="res://game/Phases/LifeBarChanged.png" id="55_tewmx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_whxrb"]
 animations = [{
@@ -253,10 +254,20 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"teste",
+"speed": 5.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f0qg"]
-bg_color = Color(0, 0.704076, 0.542514, 1)
+bg_color = Color(0.473258, 0.65803, 0.445937, 1)
+corner_radius_top_left = 22
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 17
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 0
@@ -268,7 +279,7 @@ script = ExtResource("1_4oj7c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 scale = Vector2(1.00255, 1)
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"hurt"
+animation = &"teste"
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521
@@ -312,15 +323,30 @@ script = ExtResource("54_wx5da")
 
 [node name="ProgressBarPlayer" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-offset_left = -12.0
-offset_top = -13.0
-offset_right = -8.0
-offset_bottom = 14.0
+z_index = 2
+offset_left = -14.0
+offset_top = -19.0
+offset_right = -10.0
+offset_bottom = 13.0
 rotation = -1.5708
+scale = Vector2(0.778453, 1.04015)
 theme_override_styles/fill = SubResource("StyleBoxFlat_1f0qg")
 value = 100.0
 fill_mode = 2
 show_percentage = false
+
+[node name="LifeBarChanged" type="Sprite2D" parent="."]
+position = Vector2(1, -20)
+scale = Vector2(0.12, 0.157)
+texture = ExtResource("55_tewmx")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -17.0
+offset_right = 54.0
+offset_bottom = 6.0
+scale = Vector2(0.146511, 0.159477)
+text = "100/100"
 
 [connection signal="animation_changed" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

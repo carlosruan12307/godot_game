@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture2D"
+uid="uid://dfdy7ekeet7du"
+path="res://.godot/imported/Sniper scores or crosshair cartoon illustration set.jpg-9df2cbc27a99b01d0d1b67b8fc20cc58.res"
+
+[deps]
+
+source_file="res://assets/Itens/Sniper scores or crosshair cartoon illustration set.jpg"
+dest_files=["res://.godot/imported/Sniper scores or crosshair cartoon illustration set.jpg-9df2cbc27a99b01d0d1b67b8fc20cc58.res"]
+
+[params]
+
+atlas_file="res://assets/Itens/Sniper scores or crosshair cartoon illustration set.jpg"
+import_mode=0
+crop_to_region=false
+trim_alpha_border_from_region=true

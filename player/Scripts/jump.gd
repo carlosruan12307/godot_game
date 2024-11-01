@@ -36,10 +36,10 @@ func _physics_process(delta: float) -> void:
 func process_state(delta: float) -> void:
 	player.rotation = 0
 	inputHandle.inputHandlez(self,transitioned,"","","","")
-	if Input.is_action_pressed("ui_accept") and jump_started:
-		await get_tree().create_timer(.3).timeout
-	
-		player.velocity.y = JUMP_VELOCITY 
+	#if Input.is_action_pressed("ui_accept") and jump_started:
+		#await get_tree().create_timer(.3).timeout
+	#
+		#player.velocity.y = JUMP_VELOCITY 
 		
 	if animation.animation == "jump" and !jump_started:
 		player.velocity.x = 0

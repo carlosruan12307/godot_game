@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	#print(spritePlayer.scale.x)
 	#if spritePlayer.scale.x > 0:
 		#player.position.x = player.position.x - 90
 	#else:

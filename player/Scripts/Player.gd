@@ -14,16 +14,27 @@ const SPEED = 200.0  # Velocidade de movimentação no chão
 @onready var animationP = $Sprite2D/AnimatedSprite2D
 @onready var lifeBar = %ProgressBarPlayer
 @onready var ray = %RayCast2D
+@onready var ShaderRect = $"../ColorRect"
 var timeLightningTwo = 0
 var timeLightningFinal = 0
 var randomLightning = 1
-
+var pushX = 0
+var pushY = 0
+var aumentarRaio = 0.23
 func _ready() -> void:
+	 # Converte a posição do personagem para coordenadas de tela normalizadas (UV)
+	
+
 	ray.enabled = true
 	scale = Vector2(3,3)
 	#collisionLight.disabled = true  # Inicialmente, a colisão do raio está desativada
 
 func _process(delta: float) -> void:
+
+	
+	
+	
+	
 	if lifeBar.value == 0 and animationP.animation != "dead":
 		animationP.play("dead")
 		velocity = Vector2.ZERO
@@ -64,6 +75,19 @@ func _process(delta: float) -> void:
 		collisionLight.disabled = true  # Desativa a colisão quando o raio não está ativo
 
 func _physics_process(delta: float) -> void:
+	if ShaderRect != null:
+		var player_screen_pos = get_global_position()
+		var screen_size = get_viewport_rect().size
+		if Input.is_action_just_pressed("C"):
+					
+			ShaderRect.material.set_shader_parameter("raio", aumentarRaio)
+
+			#aumentarRaio = aumentarRaio + 0.4
+			#pushY = pushY - 0.2
+
+		ShaderRect.material.set_shader_parameter("centerX", player_screen_pos.x / screen_size.x + pushX)
+	
+		ShaderRect.material.set_shader_parameter("centerY", player_screen_pos.y / screen_size.y + pushY)
 	## Adiciona gravidade
 	if not is_on_floor():
 		velocity += get_gravity() * delta

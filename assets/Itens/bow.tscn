@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://df1jd6o33aibe"]
+
+[ext_resource type="Script" path="res://assets/Itens/bow.gd" id="1_n7j5y"]
+[ext_resource type="Texture2D" uid="uid://ce0g5ilicn0qm" path="res://assets/PlayerSprites/Adventurer-1.5/Bow Pack Black.png" id="1_rfuex"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr65h"]
+atlas = ExtResource("1_rfuex")
+region = Rect2(121, 97, 22, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijyg3"]
+size = Vector2(23, 23)
+
+[node name="Bow" type="StaticBody2D"]
+script = ExtResource("1_n7j5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_rr65h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_ijyg3")

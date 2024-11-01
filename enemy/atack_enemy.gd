@@ -8,6 +8,7 @@ var direcao = -1
 var timeDamage = 0;
 var timeBeetweenDamage = 40
 @onready var lifePlayer = get_node("../../../Player/ProgressBarPlayer")
+@onready var TextLife = get_node("../../../Player/Label")
 @onready var player = get_node("../../../Player")
 @onready var statePlayer = get_node("../../../Player/State Machine")
 @onready var playerAnimation = get_node("../../../Player/Sprite2D/AnimatedSprite2D")
@@ -35,6 +36,7 @@ func process_state(delta: float) -> void:
 		if timeDamage >= timeBeetweenDamage:
 			timeDamage = 0
 			lifePlayer.value = lifePlayer.value - 10
+			TextLife.text = str(lifePlayer.value) + "/100"
 			if statePlayer != null:
 				statePlayer.current_state.transitioned.emit(statePlayer.current_state,"Hurt")
 	else:
