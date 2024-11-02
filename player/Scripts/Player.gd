@@ -37,6 +37,8 @@ func _process(delta: float) -> void:
 	
 	if lifeBar.value == 0 and animationP.animation != "dead":
 		animationP.play("dead")
+		rotation = 0
+		remove_from_group("Player")
 		velocity = Vector2.ZERO
 		if state !=null :
 			state.queue_free()

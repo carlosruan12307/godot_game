@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfj2x3nudg8bv"]
+
+[ext_resource type="Script" path="res://assets/EnemysSprites/bow_aim.gd" id="1_6kdou"]
+[ext_resource type="Texture2D" uid="uid://c4oor0k6wbip8" path="res://assets/Itens/Untitled-1.png" id="1_nxpod"]
+[ext_resource type="Script" path="res://game/Phases/untitled_1.gd" id="2_lovcw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g34u7"]
+radius = 31.7805
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p4tmo"]
+radius = 13.1529
+
+[node name="RigidBody2D" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_6kdou")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_g34u7")
+
+[node name="BowAim" type="Sprite2D" parent="."]
+z_index = 20
+scale = Vector2(0.183198, 0.175342)
+texture = ExtResource("1_nxpod")
+script = ExtResource("2_lovcw")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2147483648
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_p4tmo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

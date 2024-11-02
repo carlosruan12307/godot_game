@@ -1,13 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bugmyh4jgx60o"]
+[gd_scene load_steps=10 format=3 uid="uid://bugmyh4jgx60o"]
 
 [ext_resource type="Texture2D" uid="uid://cpk0ip8p2gwmh" path="res://assets/Map/SecondPhase.png" id="1_5esc1"]
 [ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_74go0"]
 [ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="3_vb23r"]
 [ext_resource type="Shader" path="res://game/Phases/SecondPhase.gdshader" id="4_e4fu2"]
-[ext_resource type="Texture2D" uid="uid://c4oor0k6wbip8" path="res://assets/Itens/Untitled-1.png" id="5_cxobo"]
 [ext_resource type="Script" path="res://game/Phases/color_rect.gd" id="5_j0psm"]
+[ext_resource type="PackedScene" uid="uid://cfj2x3nudg8bv" path="res://assets/EnemysSprites/bow_aim.tscn" id="6_idip8"]
 [ext_resource type="PackedScene" uid="uid://bqxt1v1idqf54" path="res://enemy/enemy_necro.tscn" id="7_07h5k"]
-[ext_resource type="Script" path="res://game/Phases/untitled_1.gd" id="7_c01gv"]
 [ext_resource type="PackedScene" uid="uid://df1jd6o33aibe" path="res://assets/Itens/bow.tscn" id="9_1w3yx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvksu"]
@@ -26,23 +25,18 @@ texture = ExtResource("1_5esc1")
 
 [node name="Player" parent="." instance=ExtResource("2_74go0")]
 position = Vector2(75, 425)
-scale = Vector2(4.9412, 4.91408)
-collision_layer = 137
-collision_mask = 1
+collision_layer = 1
+collision_mask = 536871046
 
 [node name="floor" type="StaticBody2D" parent="."]
 scale = Vector2(1.00225, 1.00642)
-collision_layer = 9
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="floor"]
 position = Vector2(1347, 535)
 scale = Vector2(7.85882, 1)
 polygon = PackedVector2Array(-56.7515, -245, -42.6273, -246, -32.7021, -246, -29.9027, -196, -39.8279, -196, -54.8428, -195)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="floor"]
-position = Vector2(988, 418)
-scale = Vector2(7.85882, 1)
-polygon = PackedVector2Array(-125.591, -280, -114.903, -279, -107.777, -315, -41.2276, -317, -41.1003, -263, -107.141, -265, -116.175, -234, -125.591, -235)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="floor"]
 position = Vector2(939.89, 765.088)
@@ -63,6 +57,8 @@ polygon = PackedVector2Array(-56.0215, -308.44, -41.319, -269.885, -30.5457, -26
 script = ExtResource("3_vb23r")
 
 [node name="LimiteInicial" type="StaticBody2D" parent="AreaForaDoJogo"]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/LimiteInicial"]
 position = Vector2(508, 590)
@@ -70,9 +66,10 @@ scale = Vector2(7.56343, 0.943396)
 polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
 
 [node name="Area2D" type="Area2D" parent="AreaForaDoJogo"]
+collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/Area2D"]
-position = Vector2(-36, 35)
+position = Vector2(116, -89)
 polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
 
 [node name="ColorPicker" type="ColorPicker" parent="."]
@@ -97,22 +94,24 @@ scale = Vector2(28.6654, 15.85)
 color = Color(0, 0, 0, 0)
 script = ExtResource("5_j0psm")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-464.902, 201.754)
+[node name="BowAim" parent="." instance=ExtResource("6_idip8")]
+position = Vector2(227.486, 331.517)
 
-[node name="Untitled-1" type="Sprite2D" parent="."]
-z_index = 20
-position = Vector2(-98.3968, 249.749)
-scale = Vector2(0.183198, 0.175342)
-texture = ExtResource("5_cxobo")
-script = ExtResource("7_c01gv")
-
-[node name="EnemyNecro" parent="." instance=ExtResource("7_07h5k")]
-position = Vector2(461.291, 201.754)
-scale = Vector2(3.04473, 2.89119)
+[node name="EnemyNecro" parent="." groups=["Enemy_Necro"] instance=ExtResource("7_07h5k")]
+position = Vector2(542.536, 194.644)
+scale = Vector2(2.72, 2.3)
 
 [node name="Bow" parent="." instance=ExtResource("9_1w3yx")]
 position = Vector2(48.747, 88.8786)
 scale = Vector2(2.37, 2.37)
+
+[node name="Up" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Up"]
+position = Vector2(990.223, 420.684)
+scale = Vector2(7.8765, 1.00642)
+polygon = PackedVector2Array(-125.591, -280, -114.903, -279, -107.777, -315, -41.2276, -317, -41.1003, -263, -107.141, -265, -116.175, -234, -125.591, -235)
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]

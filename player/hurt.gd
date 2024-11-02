@@ -7,6 +7,7 @@ class_name Hurt
 # Called when the node enters the scene tree for the first time.
 func Enter():
 	player.velocity = Vector2.ZERO
+	spritePlayer.rotation = 0
 	animation.play("hurt")
 	pass
 func Exit():
@@ -20,6 +21,7 @@ func process_state(delta: float) -> void:
 		transitioned.emit(self,"Idle")
 	pass
 func physics_process_state(delta: float) -> void:
+	
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,9 +31,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	if animation.animation == "Hurt":
 	#if spritePlayer.scale.x > 0:
 		#player.position.x = player.position.x - 90
 	#else:
 		#player.position.x = player.position.x + 90
-	transitioned.emit(self,"Idle")
+		transitioned.emit(self,"Idle")
 	pass # Replace with function body.

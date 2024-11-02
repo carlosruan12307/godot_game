@@ -29,6 +29,7 @@ func Enter():
 		has_attacked = true  # Define que o ataque já foi realizado
 
 	if animation.animation == "atack_1" and animation.frame == animation.sprite_frames.get_frame_count("atack_1") - 2:
+		player.remove_from_group("Player")
 		player.velocity.x = 300 * 10 * sprite.scale.x
 		player.move_and_slide()
 		animation.play("atack_3")
@@ -40,6 +41,7 @@ func Enter():
 		animation.play("air_atack")
 
 func Exit():
+	player.add_to_group("Player")
 	pass
 
 func Update():
