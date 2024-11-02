@@ -1,5 +1,6 @@
 extends CharacterBody2D
-
+@onready var lifeBar = get_node("../Player/Life/LifeBarChanged/ProgressBarPlayer")
+@onready var state = get_node("../Player/State Machine")
 var previous_normal = Vector2.UP 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,3 +27,15 @@ func _process(delta: float) -> void:
 	#previous_normal = normal
 	move_and_slide()
 	pass
+
+
+#func _on_area_2d_body_entered(body: Node2D) -> void:
+	## Verifica se o corpo atingido é o personagem
+	#if body.is_in_group("Player"):  
+		#lifeBar.value -= 15
+		#if state !=null:
+			#state.current_state.transitioned.emit(state.current_state,"Hurt")
+#
+	## Desativa a colisão do raio logo após o impacto
+	#collisionLight.disabled = true
+	#pass # Replace with function body.

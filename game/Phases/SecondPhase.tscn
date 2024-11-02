@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bugmyh4jgx60o"]
+[gd_scene load_steps=11 format=3 uid="uid://bugmyh4jgx60o"]
 
+[ext_resource type="Script" path="res://game/Phases/second_phase.gd" id="1_3wof1"]
 [ext_resource type="Texture2D" uid="uid://cpk0ip8p2gwmh" path="res://assets/Map/SecondPhase.png" id="1_5esc1"]
 [ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_74go0"]
 [ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="3_vb23r"]
@@ -17,6 +18,7 @@ shader_parameter/centerY = 0.64
 
 [node name="SecondPhase" type="Node2D"]
 scale = Vector2(1.10776, 1.12513)
+script = ExtResource("1_3wof1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(578.5, 324.5)
@@ -95,7 +97,7 @@ color = Color(0, 0, 0, 0)
 script = ExtResource("5_j0psm")
 
 [node name="BowAim" parent="." instance=ExtResource("6_idip8")]
-position = Vector2(227.486, 331.517)
+position = Vector2(-215.751, 129.763)
 
 [node name="EnemyNecro" parent="." groups=["Enemy_Necro"] instance=ExtResource("7_07h5k")]
 position = Vector2(542.536, 194.644)
@@ -104,6 +106,8 @@ scale = Vector2(2.72, 2.3)
 [node name="Bow" parent="." instance=ExtResource("9_1w3yx")]
 position = Vector2(48.747, 88.8786)
 scale = Vector2(2.37, 2.37)
+collision_layer = 0
+collision_mask = 130
 
 [node name="Up" type="StaticBody2D" parent="."]
 collision_layer = 128

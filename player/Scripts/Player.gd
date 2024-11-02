@@ -13,6 +13,8 @@ const SPEED = 200.0  # Velocidade de movimentação no chão
 @onready var lightningRay = $"../StaticBody2D/Sprite2D2/RayCast2D"
 @onready var animationP = $Sprite2D/AnimatedSprite2D
 @onready var lifeBar = %ProgressBarPlayer
+@onready var lifeBarLabel = %Label
+@onready var bowAim = get_node("../BowAim")
 @onready var ray = %RayCast2D
 @onready var ShaderRect = $"../ColorRect"
 var timeLightningTwo = 0
@@ -20,7 +22,7 @@ var timeLightningFinal = 0
 var randomLightning = 1
 var pushX = 0
 var pushY = 0
-var aumentarRaio = 0.23
+
 func _ready() -> void:
 	 # Converte a posição do personagem para coordenadas de tela normalizadas (UV)
 	
@@ -30,14 +32,14 @@ func _ready() -> void:
 	#collisionLight.disabled = true  # Inicialmente, a colisão do raio está desativada
 
 func _process(delta: float) -> void:
-
 	
 	
 	
 	
 	if lifeBar.value == 0 and animationP.animation != "dead":
-		animationP.play("dead")
 		rotation = 0
+		animationP.play("dead")
+		
 		remove_from_group("Player")
 		velocity = Vector2.ZERO
 		if state !=null :
@@ -80,9 +82,6 @@ func _physics_process(delta: float) -> void:
 	if ShaderRect != null:
 		var player_screen_pos = get_global_position()
 		var screen_size = get_viewport_rect().size
-		if Input.is_action_just_pressed("C"):
-					
-			ShaderRect.material.set_shader_parameter("raio", aumentarRaio)
 
 			#aumentarRaio = aumentarRaio + 0.4
 			#pushY = pushY - 0.2
@@ -109,6 +108,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	# Verifica se o corpo atingido é o personagem
 	if body.is_in_group("Player"):  
 		lifeBar.value -= 15
+		lifeBarLabel.text = str(lifeBar.value) + "/100"
 		if state !=null:
 			state.current_state.transitioned.emit(state.current_state,"Hurt")
 

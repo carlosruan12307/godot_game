@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cw7oidbwayfgj"]
+[gd_scene load_steps=66 format=3 uid="uid://cw7oidbwayfgj"]
 
 [ext_resource type="Script" path="res://player/Scripts/Player.gd" id="1_4oj7c"]
 [ext_resource type="Texture2D" uid="uid://jhmkg8waq2r3" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-idle-2-00.png" id="2_83xhv"]
@@ -53,10 +53,13 @@
 [ext_resource type="Script" path="res://player/Scripts/atack_1.gd" id="31_hktnr"]
 [ext_resource type="Texture2D" uid="uid://d1uyvyllm0rpa" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-hurt-02.png" id="31_i8dw3"]
 [ext_resource type="Script" path="res://player/Scripts/model_state.gd" id="32_d2o8s"]
+[ext_resource type="Texture2D" uid="uid://cgy6qcg6imku5" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-slide-00.png" id="46_3qcax"]
 [ext_resource type="Texture2D" uid="uid://cs83bwekadd7y" path="res://assets/PlayerSprites/Adventurer-1.5/adventurer-bow-Sheet.png" id="46_j2h55"]
+[ext_resource type="Texture2D" uid="uid://wf4v3b5u14bu" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-slide-01.png" id="47_g2yta"]
 [ext_resource type="Script" path="res://player/hurt.gd" id="54_wx5da"]
 [ext_resource type="Texture2D" uid="uid://c3yo8ugrjcqqu" path="res://game/Phases/LifeBarChanged.png" id="55_tewmx"]
 [ext_resource type="Script" path="res://player/atack_bow.gd" id="56_l8ut5"]
+[ext_resource type="Script" path="res://player/slide.gd" id="59_rvklb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q7g1c"]
 atlas = ExtResource("46_j2h55")
@@ -271,6 +274,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("46_3qcax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_g2yta")
+}],
+"loop": false,
+"name": &"slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_q7g1c")
 }, {
 "duration": 1.0,
@@ -302,8 +316,8 @@ script = ExtResource("1_4oj7c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 scale = Vector2(1.00255, 1)
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"teste"
-frame = 2
+animation = &"slide"
+frame = 1
 frame_progress = 1.0
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
@@ -316,6 +330,7 @@ target_position = Vector2(22, 15)
 collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(7, -8, 7, -1, 7, 4, 7, 8, 7, 11, 7, 14, 7, 17, 5, 17, 4, 15, 2, 13, 0, 11, -4, 14, -6, 17, -8, 17, -7, 14, -6, 11, -6, 4, -6, -2, -6, -5, -6, -8)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -349,6 +364,9 @@ script = ExtResource("54_wx5da")
 [node name="AtackBow" type="Node" parent="State Machine"]
 script = ExtResource("56_l8ut5")
 
+[node name="Slide" type="Node" parent="State Machine"]
+script = ExtResource("59_rvklb")
+
 [node name="Life" type="Node2D" parent="."]
 
 [node name="LifeBarChanged" type="Sprite2D" parent="Life"]
@@ -371,6 +389,7 @@ fill_mode = 2
 show_percentage = false
 
 [node name="Label" type="Label" parent="Life/LifeBarChanged"]
+unique_name_in_owner = true
 offset_left = -83.3333
 offset_top = 19.1083
 offset_right = 7.66666
@@ -383,4 +402,5 @@ text = "100/100"
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="State Machine/Atack" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="State Machine/Hurt" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="State Machine/AtackBow" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="State Machine/Slide" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Sprite2D/Timer" to="." method="_on_timer_timeout"]

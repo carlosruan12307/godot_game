@@ -1,0 +1,166 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmqopklktpgrq"]
+
+[ext_resource type="Script" path="res://question.gd" id="1_qaclg"]
+[ext_resource type="Texture2D" uid="uid://dnqto2gm1p815" path="res://game/Phases/Dungeon_brick_wall_grey.png.png" id="2_r2vq3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5my2"]
+
+[sub_resource type="FontFile" id="FontFile_8vpkt"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/2/0/ascent = 0.0
+cache/0/2/0/descent = 0.0
+cache/0/2/0/underline_position = 0.0
+cache/0/2/0/underline_thickness = 0.0
+cache/0/2/0/scale = 1.0
+cache/0/3/0/ascent = 0.0
+cache/0/3/0/descent = 0.0
+cache/0/3/0/underline_position = 0.0
+cache/0/3/0/underline_thickness = 0.0
+cache/0/3/0/scale = 1.0
+cache/0/4/0/ascent = 0.0
+cache/0/4/0/descent = 0.0
+cache/0/4/0/underline_position = 0.0
+cache/0/4/0/underline_thickness = 0.0
+cache/0/4/0/scale = 1.0
+cache/0/5/0/ascent = 0.0
+cache/0/5/0/descent = 0.0
+cache/0/5/0/underline_position = 0.0
+cache/0/5/0/underline_thickness = 0.0
+cache/0/5/0/scale = 1.0
+cache/0/6/0/ascent = 0.0
+cache/0/6/0/descent = 0.0
+cache/0/6/0/underline_position = 0.0
+cache/0/6/0/underline_thickness = 0.0
+cache/0/6/0/scale = 1.0
+cache/0/7/0/ascent = 0.0
+cache/0/7/0/descent = 0.0
+cache/0/7/0/underline_position = 0.0
+cache/0/7/0/underline_thickness = 0.0
+cache/0/7/0/scale = 1.0
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/12/0/ascent = 0.0
+cache/0/12/0/descent = 0.0
+cache/0/12/0/underline_position = 0.0
+cache/0/12/0/underline_thickness = 0.0
+cache/0/12/0/scale = 1.0
+cache/0/13/0/ascent = 0.0
+cache/0/13/0/descent = 0.0
+cache/0/13/0/underline_position = 0.0
+cache/0/13/0/underline_thickness = 0.0
+cache/0/13/0/scale = 1.0
+cache/0/14/0/ascent = 0.0
+cache/0/14/0/descent = 0.0
+cache/0/14/0/underline_position = 0.0
+cache/0/14/0/underline_thickness = 0.0
+cache/0/14/0/scale = 1.0
+cache/0/15/0/ascent = 0.0
+cache/0/15/0/descent = 0.0
+cache/0/15/0/underline_position = 0.0
+cache/0/15/0/underline_thickness = 0.0
+cache/0/15/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+
+[node name="Question" type="StaticBody2D"]
+z_index = 100
+position = Vector2(181, 156)
+scale = Vector2(0.72, 0.52)
+script = ExtResource("1_qaclg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i5my2")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Container"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="DungeonBrickWallGrey_png" type="Sprite2D" parent="Container/GridContainer"]
+position = Vector2(637.5, 359)
+scale = Vector2(0.673437, 0.672222)
+texture = ExtResource("2_r2vq3")
+
+[node name="Label" type="Label" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = -682.32
+offset_top = -392.727
+offset_right = -581.32
+offset_bottom = -346.727
+scale = Vector2(16.6289, 9.97995)
+theme_override_fonts/font = SubResource("FontFile_8vpkt")
+text = "pergunta"
+
+[node name="Button" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = -747.657
+offset_top = 171.074
+offset_right = -289.657
+offset_bottom = 330.074
+scale = Vector2(1.353, 1.149)
+size_flags_stretch_ratio = 0.0
+text = "Resposta"
+
+[node name="Button2" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = 73.5035
+offset_top = 171.074
+offset_right = 531.504
+offset_bottom = 330.074
+scale = Vector2(1.353, 1.149)
+size_flags_stretch_ratio = 0.0
+text = "Resposta"
+
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Button" to="." method="_on_button_pressed"]

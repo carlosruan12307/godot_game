@@ -15,8 +15,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if playerStateMachine != null:
-		if Input.is_action_just_pressed("C"):
-			notkeys = true;
+		#if Input.is_action_just_pressed("C"):
+			#notkeys = true;
 		if Input.is_action_pressed("W"):
 			global_position.y = global_position.y - 5;
 			notkeys = false;
@@ -29,13 +29,13 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("D"):
 			global_position.x = global_position.x + 5;
 			notkeys = false;	
-		if (Input.is_action_just_pressed("C") or pressedC) and notkeys:
-			global_position = get_viewport().get_mouse_position()
-			pressedC = true
-		if Input.is_action_just_pressed("Mouse_Left_Click") and aimEnterEnemy:
-			playerStateMachine.current_state.transitioned.emit(playerStateMachine.current_state,"AtackBow")
-			LifeBarNecro.value -= 15
-			LifeBarNecroLabel.text = str(LifeBarNecro.value) + "/100"
+		#if (Input.is_action_just_pressed("C") or pressedC) and notkeys:
+			#global_position = get_viewport().get_mouse_position()
+			#pressedC = true
+		#if Input.is_action_just_pressed("Mouse_Left_Click") and aimEnterEnemy:
+			#playerStateMachine.current_state.transitioned.emit(playerStateMachine.current_state,"AtackBow")
+			#LifeBarNecro.value -= 15
+			#LifeBarNecroLabel.text = str(LifeBarNecro.value) + "/100"
 		if Input.is_action_just_pressed("Q") and aimEnterEnemy:
 			playerStateMachine.current_state.transitioned.emit(playerStateMachine.current_state,"AtackBow")
 			LifeBarNecro.value -= 15

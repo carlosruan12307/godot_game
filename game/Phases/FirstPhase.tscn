@@ -209,4 +209,5 @@ collision_mask = 649
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]
 [connection signal="area_entered" from="StaticBody2D/Area2D" to="Player" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="StaticBody2D/Area2D" to="StaticBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="StaticBody2D/Area2D" to="Player" method="_on_area_2d_body_entered"]
