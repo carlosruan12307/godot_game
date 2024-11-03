@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 
 func goToNextArea(body: Node2D) -> void:
 	
-	if PlayerStatus.thisBodyIsPlayer(body) and progressBarLife.value >= 1000: handleNextPhase(PhasesStates.currentPhase)
+	if PlayerStatus.thisBodyIsPlayer(body) and progressBarLife and  progressBarLife.value >= 1000: handleNextPhase(PhasesStates.currentPhase)
 	
 
 func handleNextPhase(currentPhase) -> void:
