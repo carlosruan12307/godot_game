@@ -316,9 +316,7 @@ script = ExtResource("1_4oj7c")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 scale = Vector2(1.00255, 1)
 sprite_frames = SubResource("SpriteFrames_whxrb")
-animation = &"slide"
-frame = 1
-frame_progress = 1.0
+animation = &"atack_1"
 
 [node name="Timer" type="Timer" parent="Sprite2D"]
 wait_time = 0.521
@@ -326,11 +324,10 @@ one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
 unique_name_in_owner = true
-target_position = Vector2(22, 15)
+target_position = Vector2(26, 0)
 collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
 polygon = PackedVector2Array(7, -8, 7, -1, 7, 4, 7, 8, 7, 11, 7, 14, 7, 17, 5, 17, 4, 15, 2, 13, 0, 11, -4, 14, -6, 17, -8, 17, -7, 14, -6, 11, -6, 4, -6, -2, -6, -5, -6, -8)
 
 [node name="State Machine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]

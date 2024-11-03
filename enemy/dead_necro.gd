@@ -1,16 +1,14 @@
-extends StateEnemy
+extends StateNecro
 
-class_name DeadEnemy
+class_name DeadNecro
 @onready var animation = $"../../Sprite2D/AnimatedSprite2D"
-@onready var state = %StateMachineEnemy
-@onready var lifeEnemy = %ProgressBar
-@onready var Body = $"../.."
-@onready var progressGainLife = get_node("../../../ProgressBarSlimes")
+@onready var stateNecro = $".."
+@onready var necro = $"../.."
+@onready var ShaderRect = get_node("../../../ColorRect")
 
 # Called when the node enters the scene tree for the first time.
 func Enter():
-	
-	progressGainLife.value = progressGainLife.value + (1000/8)
+	ShaderRect.material.set_shader_parameter("raio", 100)
 	animation.play("dead")
 	pass
 func Exit():
@@ -19,7 +17,6 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _physics_process(delta: float) -> void:
-
 	pass
 
 
@@ -31,14 +28,12 @@ func physics_process_state(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	
+
 	
 	pass
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animation.animation == "dead":
-		Body.queue_free()
-		state.queue_free()
-	
+		necro.queue_free()
 	pass # Replace with function body.

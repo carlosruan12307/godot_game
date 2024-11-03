@@ -71,8 +71,18 @@ polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0
 collision_layer = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/Area2D"]
-position = Vector2(116, -89)
+position = Vector2(130, -73)
 polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
+
+[node name="LimiteInicial2" type="StaticBody2D" parent="AreaForaDoJogo"]
+position = Vector2(1291, -27)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/LimiteInicial2"]
+position = Vector2(521, 588)
+scale = Vector2(7.56343, 0.943396)
+polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
 
 [node name="ColorPicker" type="ColorPicker" parent="."]
 visible = false
@@ -104,7 +114,7 @@ position = Vector2(542.536, 194.644)
 scale = Vector2(2.72, 2.3)
 
 [node name="Bow" parent="." instance=ExtResource("9_1w3yx")]
-position = Vector2(48.747, 88.8786)
+position = Vector2(-145.338, 42.6617)
 scale = Vector2(2.37, 2.37)
 collision_layer = 0
 collision_mask = 130
@@ -117,5 +127,22 @@ collision_mask = 0
 position = Vector2(990.223, 420.684)
 scale = Vector2(7.8765, 1.00642)
 polygon = PackedVector2Array(-125.591, -280, -114.903, -279, -107.777, -315, -41.2276, -317, -41.1003, -263, -107.141, -265, -116.175, -234, -125.591, -235)
+
+[node name="BowSpawn" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="BowSpawn"]
+position = Vector2(53, 98)
+scale = Vector2(1.10776, 1.12513)
+
+[node name="Marker2D2" type="Marker2D" parent="BowSpawn"]
+position = Vector2(228, 506)
+scale = Vector2(1.10776, 1.12513)
+
+[node name="Marker2D3" type="Marker2D" parent="BowSpawn"]
+position = Vector2(635, 534)
+scale = Vector2(1.10776, 1.12513)
+
+[node name="Marker2D4" type="Marker2D" parent="BowSpawn"]
+position = Vector2(1060, 247)
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]

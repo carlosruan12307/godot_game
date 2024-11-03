@@ -1,7 +1,7 @@
 extends Node
 
-class_name State
-@onready var playerSprite = $"../../Sprite2D"
+class_name StateNecro
+
 signal transitioned
 func Enter():
 	pass

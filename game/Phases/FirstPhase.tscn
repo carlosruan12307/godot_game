@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bterf0xuop32e"]
+[gd_scene load_steps=17 format=3 uid="uid://bterf0xuop32e"]
 
 [ext_resource type="Texture2D" uid="uid://ptqc2yguk23u" path="res://assets/Map/moon.png" id="1_5tcli"]
 [ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_y617p"]
@@ -55,6 +55,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_miual"]
 size = Vector2(38.3367, 299.458)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psogp"]
+bg_color = Color(1, 1, 1, 0.505882)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqqpc"]
+bg_color = Color(0.823749, 0.519463, 0.229296, 1)
+
 [node name="FirstPhase" type="Node2D" groups=["FirstPhase"]]
 scale = Vector2(1.12164, 1.11535)
 
@@ -101,7 +107,7 @@ distancia = 300
 SPEED = 270
 
 [node name="Slime5" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(582.183, 218.765)
+position = Vector2(458.258, 280.629)
 collision_layer = 4
 collision_mask = 129
 distancia = 700
@@ -141,11 +147,11 @@ scale = Vector2(7.56343, 0.943396)
 polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
 
 [node name="LimiteInicial2" type="StaticBody2D" parent="AreaForaDoJogo" groups=["Wall"]]
-collision_layer = 524288
+collision_layer = 17301504
 collision_mask = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/LimiteInicial2"]
-position = Vector2(1805, 573)
+position = Vector2(1799, 511)
 scale = Vector2(7.56343, 0.943396)
 polygon = PackedVector2Array(-66.9312, -621, -69.4761, -623, -69.7306, 62, -67.0584, 64)
 
@@ -154,7 +160,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AreaForaDoJogo/Area2D"]
-position = Vector2(132, -41)
+position = Vector2(113, -62)
 polygon = PackedVector2Array(1145, -22, 1297, -23, 1288, 645, 1151, 641)
 
 [node name="StaticBody2D" type="CharacterBody2D" parent="."]
@@ -205,7 +211,29 @@ unique_name_in_owner = true
 position = Vector2(74.9999, 425)
 scale = Vector2(4.9412, 4.91408)
 collision_layer = 2
-collision_mask = 649
+collision_mask = 16777865
+
+[node name="ProgressBarSlimes" type="ProgressBar" parent="."]
+offset_left = 887.985
+offset_top = 21.5179
+offset_right = 906.985
+offset_bottom = 255.518
+rotation = -1.5708
+theme_override_styles/background = SubResource("StyleBoxFlat_psogp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lqqpc")
+max_value = 1000.0
+fill_mode = 2
+show_percentage = false
+
+[node name="Label" type="Label" parent="ProgressBarSlimes"]
+layout_mode = 0
+offset_left = 21.5179
+offset_top = 63.3002
+offset_right = 135.518
+offset_bottom = 86.3002
+rotation = 1.5708
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "progresso fase"
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]
 [connection signal="area_entered" from="StaticBody2D/Area2D" to="Player" method="_on_area_2d_area_entered"]

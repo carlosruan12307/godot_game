@@ -7,7 +7,8 @@ const RETREAT_DISTANCE = 200.0 # Distância mínima para afastar-se quando estiv
 @onready var animation = $Sprite2D/AnimatedSprite2D
 @onready var spriteNecro = $Sprite2D
 @onready var fireball_scene = preload("res://bola_fogo.tscn")
-
+@onready var stateNecro = get_node("StateMachineNecro")
+@onready var barLife = %ProgressBarNecro
 var target = null
 var direction = Vector2.ZERO
 var changeDirection = true
@@ -20,7 +21,7 @@ var random_direction = Vector2.ZERO
 var random_change_timer = 0.0
 var random_change_interval = 2.0
 func _ready() -> void:
-	animation.play("walk")
+	pass
 #func random_move(delta: float) -> void:
 	#random_change_timer += delta
 	#if random_change_timer >= random_change_interval:
@@ -32,51 +33,54 @@ func _ready() -> void:
 	#velocity = direction * SPEED  # Move na direção suavizada
 	#animation.play("walk")  # Reproduz a animação de caminhada
 func _physics_process(delta: float) -> void:
-
+	if barLife.value <= 0 and stateNecro != null:
+		stateNecro.current_state.transitioned.emit(stateNecro.current_state,"DeadNecro")
+		
 	countDelayFires += 1;
-	if target and target.is_in_group("Player"):
-		var distance_to_target = position.distance_to(target.position)
-		# Verifica a distância do alvo para decidir se vai seguir, atacar ou se afastar
-		if distance_to_target > FOLLOW_DISTANCE:
+	if stateNecro != null :
+		if target and target.is_in_group("Player") and stateNecro.current_state.name != "DeadNecro":
+			var distance_to_target = position.distance_to(target.position)
+			# Verifica a distância do alvo para decidir se vai seguir, atacar ou se afastar
+			if distance_to_target > FOLLOW_DISTANCE:
 			# Segue o alvo se estiver longe o suficiente
-			is_following = true
-			is_retreating = false
-		elif distance_to_target <= RETREAT_DISTANCE:
+				is_following = true
+				is_retreating = false
+			elif distance_to_target <= RETREAT_DISTANCE and stateNecro != null:
 			# Se estiver muito perto, recua até ficar a uma distância segura
 			
-			is_following = false
-			is_retreating = true
-			animation.play("walk")  # Volta para animação de movimento ao recuar
-			SPEED = 350
-		else:
+				is_following = false
+				is_retreating = true
+				stateNecro.current_state.transitioned.emit(stateNecro.current_state,"WalkNecro")  # Volta para animação de movimento ao recuar
+				SPEED = 350
+			elif stateNecro != null:
 			# Para de seguir e ataca se estiver na distância correta
-			if countDelayFires >= delayFires:
-				spawn_fireball()
-				countDelayFires = 0
+				if countDelayFires >= delayFires:
+					spawn_fireball()
+					countDelayFires = 0
 				
-			animation.play("atack")
-			is_following = false
-			is_retreating = false
+				stateNecro.current_state.transitioned.emit(stateNecro.current_state,"AtackNecro")
+				is_following = false
+				is_retreating = false
 		
-		if is_following:
-			direction = (target.position - position).normalized()
-			velocity = direction * SPEED
-		elif is_retreating:
-			direction = (position - target.position).normalized()
-			velocity = direction * SPEED
-		else:
+			if is_following:
+				direction = (target.position - position).normalized()
+				velocity = direction * SPEED
+			elif is_retreating:
+				direction = (position - target.position).normalized()
+				velocity = direction * SPEED
+			else:
 			# Para de se mover quando estiver na distância correta para o ataque
-			velocity = Vector2.ZERO
+				velocity = Vector2.ZERO
 
 		# Verifica a direção e vira o sprite
-		if direction.x <= 0 and changeDirection:
-			spriteNecro.scale.x = spriteNecro.scale.x * -1
-			changeDirection = false
-		elif not changeDirection and direction.x >= 0:
-			spriteNecro.scale.x = spriteNecro.scale.x * -1
-			changeDirection = true
-	else:
-		animation.play("walk")
+			if direction.x <= 0 and changeDirection:
+				spriteNecro.scale.x = spriteNecro.scale.x * -1
+				changeDirection = false
+			elif not changeDirection and direction.x >= 0:
+				spriteNecro.scale.x = spriteNecro.scale.x * -1
+				changeDirection = true
+		elif stateNecro != null and  stateNecro.current_state.name != "DeadNecro":
+			stateNecro.current_state.transitioned.emit(stateNecro.current_state,"WalkNecro")
 		#random_move(delta)
 	
 	move_and_slide()
@@ -105,8 +109,3 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == target:
 		target = null
-
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-
-	pass # Replace with function body.

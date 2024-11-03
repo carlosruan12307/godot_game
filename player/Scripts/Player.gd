@@ -7,6 +7,7 @@ const SPEED = 200.0  # Velocidade de movimentação no chão
 @onready var state = $"State Machine"
 @onready var lightningAnimation = $"../StaticBody2D/Sprite2D2/lightning"
 @onready var lightning = $"../StaticBody2D"
+@onready var progressBarLifeGain = get_node("../ProgressBarSlimes")
 @onready var area2dLightning  = $"../StaticBody2D/Area2D"
 @onready var collisionPlayer = $CollisionPolygon2D
 @onready var collisionLight = $"../StaticBody2D/CollisionShape2D"
@@ -15,26 +16,37 @@ const SPEED = 200.0  # Velocidade de movimentação no chão
 @onready var lifeBar = %ProgressBarPlayer
 @onready var lifeBarLabel = %Label
 @onready var bowAim = get_node("../BowAim")
+@onready var endgame = preload("res://game/Phases/end_game.tscn")
+@onready var currentPhase = get_node("../")
 @onready var ray = %RayCast2D
+@onready var phase = get_node("../")
 @onready var ShaderRect = $"../ColorRect"
+@onready var question = preload("res://question.tscn")
 var timeLightningTwo = 0
 var timeLightningFinal = 0
 var randomLightning = 1
 var pushX = 0
 var pushY = 0
-
+var oneTimeQuestion = true
 func _ready() -> void:
 	 # Converte a posição do personagem para coordenadas de tela normalizadas (UV)
-	
-
+	if PhasesStates.LifeBefore != 0:
+		lifeBar.value = PhasesStates.LifeBefore
+		lifeBarLabel.text = str(lifeBar.value) + "/100"
 	ray.enabled = true
 	scale = Vector2(3,3)
 	#collisionLight.disabled = true  # Inicialmente, a colisão do raio está desativada
 
 func _process(delta: float) -> void:
-	
-	
-	
+
+	if progressBarLifeGain and progressBarLifeGain.value >= 1000 and oneTimeQuestion:
+		var instance = question.instantiate()
+		instance.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+		phase.add_child(instance)
+		get_tree().paused = true
+		#lifeBar.value = 100;
+		#lifeBarLabel.text = str(lifeBar.value) + "/100"
+		oneTimeQuestion = false;
 	
 	if lifeBar.value == 0 and animationP.animation != "dead":
 		rotation = 0
@@ -45,6 +57,11 @@ func _process(delta: float) -> void:
 		if state !=null :
 			state.queue_free()
 			set_collision_layer_value(2,false)
+			await get_tree().create_timer(2).timeout
+			get_tree().change_scene_to_file("res://game/Menus/PrincipalMenu.tscn")
+			#var instanceEndGame = endgame.instantiate()
+			#currentPhase.add_child(instanceEndGame);
+		
 	if position.y <= 280 and is_on_floor() and lightning:
 		lightningAnimation.visible = true
 		lightning.visible = true

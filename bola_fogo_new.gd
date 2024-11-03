@@ -27,7 +27,6 @@ func _process(delta: float) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		
-		print("damage to player")
 		playerLifeBar.value = playerLifeBar.value - 20
 		playerLifeBarLabel.text = str(playerLifeBar.value) + "/100"
 		playerState.current_state.transitioned.emit(playerState.current_state,"Hurt")

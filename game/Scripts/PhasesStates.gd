@@ -12,13 +12,14 @@ const Phases = {
 }
 
 var currentPhase = Phases.FIRST_PHASE
-
+var LifeBefore = 0
 func setSceneSelected(phase) -> void: get_tree().change_scene_to_file(phase.PATH)
 	
 func comeBackPrincipallMenu(): setSceneSelected(Phases.PRINCIPAL_MENU)
 
 func setNextScene(nextPhase) -> void: 
 	if(!nextPhase.PATH== 'TODO'): 
+		LifeBefore = get_tree().get_nodes_in_group("Player")[0].get_node("Life/LifeBarChanged/ProgressBarPlayer").value
 		currentPhase = nextPhase
 		get_tree().change_scene_to_file(nextPhase.PATH)
 		

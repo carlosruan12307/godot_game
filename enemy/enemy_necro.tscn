@@ -1,8 +1,14 @@
-[gd_scene load_steps=43 format=3 uid="uid://bqxt1v1idqf54"]
+[gd_scene load_steps=49 format=3 uid="uid://bqxt1v1idqf54"]
 
 [ext_resource type="Script" path="res://enemy_necro.gd" id="1_mcbgp"]
 [ext_resource type="Texture2D" uid="uid://dnn2uvebwnvvc" path="res://assets/EnemysSprites/Necromancer_creativekind-Sheet.png" id="2_2yvyy"]
+[ext_resource type="Script" path="res://enemy/state_machine_necro.gd" id="3_5rspr"]
 [ext_resource type="Texture2D" uid="uid://c3yo8ugrjcqqu" path="res://game/Phases/LifeBarChanged.png" id="3_haj2d"]
+[ext_resource type="Script" path="res://enemy/state_necro.gd" id="4_xf781"]
+[ext_resource type="Script" path="res://enemy/walk_necro.gd" id="5_2y0s6"]
+[ext_resource type="Script" path="res://enemy/dead_necro.gd" id="6_wvba5"]
+[ext_resource type="Script" path="res://enemy/hurt_necro.gd" id="7_rqnqu"]
+[ext_resource type="Script" path="res://enemy/atack_necro.gd" id="8_i5xsj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kulyh"]
 atlas = ExtResource("2_2yvyy")
@@ -272,7 +278,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wlwqe")
 }],
-"loop": true,
+"loop": false,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -299,7 +305,7 @@ script = ExtResource("1_mcbgp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite2D"]
 sprite_frames = SubResource("SpriteFrames_jgvge")
-animation = &"atack"
+animation = &"dead"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 29.5)
@@ -313,9 +319,24 @@ collision_layer = 0
 position = Vector2(-18, -42)
 shape = SubResource("CircleShape2D_via8k")
 
-[node name="StateMachineNecro" type="Node" parent="."]
+[node name="StateMachineNecro" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_5rspr")
+initial_state = NodePath("WalkNecro")
 
 [node name="StateNecro" type="Node" parent="StateMachineNecro"]
+script = ExtResource("4_xf781")
+
+[node name="WalkNecro" type="Node" parent="StateMachineNecro"]
+script = ExtResource("5_2y0s6")
+
+[node name="DeadNecro" type="Node" parent="StateMachineNecro"]
+script = ExtResource("6_wvba5")
+
+[node name="HurtNecro" type="Node" parent="StateMachineNecro"]
+script = ExtResource("7_rqnqu")
+
+[node name="AtackNecro" type="Node" parent="StateMachineNecro"]
+script = ExtResource("8_i5xsj")
 
 [node name="Life" type="Node2D" parent="."]
 
@@ -347,5 +368,6 @@ scale = Vector2(1.75204, 0.785369)
 text = "100/100"
 
 [connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Sprite2D/AnimatedSprite2D" to="StateMachineNecro/DeadNecro" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

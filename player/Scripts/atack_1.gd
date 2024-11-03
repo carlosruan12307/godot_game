@@ -19,26 +19,29 @@ var AtackDamageToSLime = 50
 var has_attacked = false  # Nova variável para rastrear se o dano já foi aplicado
 
 func Enter():
-	if ray.is_colliding() and ray.get_collider().is_in_group("Enemy") and not has_attacked:
-		var colliderEnemy = ray.get_collider()
-		var lifeEnemy = colliderEnemy.find_child("ProgressBar", true, false)
-		lifeEnemy.value -= AtackDamageToSLime
-		colliderEnemy.find_child("StateMachineEnemy", true, false).current_state.transitioned.emit(
-			colliderEnemy.find_child("StateMachineEnemy", true, false).current_state, "HurtEnemy"
-		)
-		has_attacked = true  # Define que o ataque já foi realizado
-
-	if animation.animation == "atack_1" and animation.frame == animation.sprite_frames.get_frame_count("atack_1") - 2:
-		player.remove_from_group("Player")
-		player.velocity.x = 300 * 10 * sprite.scale.x
-		player.move_and_slide()
-		animation.play("atack_3")
-
 	if animation.animation == "idle":
 		animation.play("atack_1")
 		has_attacked = false  # Reseta para permitir dano no próximo ataque
 	elif animation.animation == "jump":
 		animation.play("air_atack")
+
+		
+
+	if animation.animation == "atack_1"  and animation.frame >= animation.sprite_frames.get_frame_count("atack_1") - 2:
+		#if ray.get_collider():
+			#has_attacked = true  # Define que o ataque já foi realizado
+			#var colliderEnemy = ray.get_collider()
+			#var lifeEnemy = colliderEnemy.find_child("ProgressBar", true, false)
+			#lifeEnemy.value -= AtackDamageToSLime
+			#colliderEnemy.find_child("StateMachineEnemy", true, false).current_state.transitioned.emit(
+				#colliderEnemy.find_child("StateMachineEnemy", true, false).current_state, "HurtEnemy"
+			#)
+		player.remove_from_group("Player")
+		player.velocity.x = 300 * 10 * sprite.scale.x
+		player.move_and_slide()
+		animation.play("atack_3")
+
+
 
 func Exit():
 	player.add_to_group("Player")
@@ -51,6 +54,14 @@ func _ready() -> void:
 	pass
 
 func process_state(delta: float) -> void:
+	if ray.is_colliding() and ray.get_collider().is_in_group("Enemy") and not has_attacked and animation.frame >= animation.sprite_frames.get_frame_count("atack_1") - 3 :
+		has_attacked = true  # Define que o ataque já foi realizado
+		var colliderEnemy = ray.get_collider()
+		var lifeEnemy = colliderEnemy.find_child("ProgressBar", true, false)
+		lifeEnemy.value -= AtackDamageToSLime
+		colliderEnemy.find_child("StateMachineEnemy", true, false).current_state.transitioned.emit(
+			colliderEnemy.find_child("StateMachineEnemy", true, false).current_state, "HurtEnemy"
+		)
 	if animation.animation == "air_atack":
 		if player.is_on_floor():
 			transitioned.emit(self, "idle")

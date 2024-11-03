@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://djm2trym4dv1e"]
+
+[ext_resource type="Texture2D" uid="uid://dnqto2gm1p815" path="res://game/Phases/Dungeon_brick_wall_grey.png.png" id="1_o772h"]
+
+[node name="EndGame" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(644.25, 369.75)
+scale = Vector2(0.663281, 0.652315)
+texture = ExtResource("1_o772h")
+
+[node name="Label" type="Label" parent="Sprite2D"]
+offset_left = -576.0
+offset_top = -299.0
+offset_right = -416.0
+offset_bottom = -259.0
+scale = Vector2(9.50318, 5.59901)
+text = "FIM DE JOGO"

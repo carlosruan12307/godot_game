@@ -4,10 +4,10 @@ extends StaticBody2D
 
 @onready var phase = get_node("../")
 var oneTime = true;
+@export var lastSpawn  : Vector2 = Vector2(0,0);
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
-	#print(phase)
+	lastSpawn = global_position
 	pass # Replace with function body.
 
 
@@ -18,14 +18,12 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		if oneTime:
 				## Instanciar a cena
-			var instance = question.instantiate()
-			instance.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+	var instance = question.instantiate()
+	instance.process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 			
-			phase.add_child(instance)
-			oneTime = false
-			get_tree().paused = true
+	phase.add_child(instance)
+	oneTime = false
+	get_tree().paused = true
 			
 	pass # Replace with function body.
