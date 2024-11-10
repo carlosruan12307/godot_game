@@ -31,25 +31,23 @@ position = Vector2(637.5, 359)
 scale = Vector2(0.673437, 0.672222)
 texture = ExtResource("2_r2vq3")
 
-[node name="Falso" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+[node name="Verdadeiro" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
 offset_left = -747.657
 offset_top = 171.074
 offset_right = -289.657
 offset_bottom = 330.074
 scale = Vector2(1.353, 1.149)
 size_flags_stretch_ratio = 0.0
-text = "Falso
-"
+text = "Verdadeiro"
 
-[node name="Verdadeiro" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+[node name="Falso" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
 offset_left = 73.5035
 offset_top = 171.074
 offset_right = 531.504
 offset_bottom = 330.074
 scale = Vector2(1.353, 1.149)
 size_flags_stretch_ratio = 0.0
-text = "Verdadeiro
-"
+text = "Falso"
 
 [node name="Pergunta" type="Sprite2D" parent="Container/GridContainer"]
 position = Vector2(330.556, 121.154)
@@ -69,5 +67,5 @@ autowrap_mode = 2
 tab_size = 1
 text_direction = 1
 
-[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Falso" to="." method="_on_falso_pressed"]
-[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Verdadeiro" to="." method="_on_verdadeiro_pressed"]
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Verdadeiro" to="." method="handleButtonRespostaPressed" binds= [true]]
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Falso" to="." method="handleButtonRespostaPressed" binds= [false]]

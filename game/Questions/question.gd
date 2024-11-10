@@ -34,40 +34,46 @@ func randomBowSpawn() -> Node:
 			
 	return random_child
 	
-func _on_falso_pressed() -> void:
-	print("Pressionou o botao de falso")
-	
-	if phase != null:
-		if phase.name == "FirstPhase":
-			playerLifeBar.value = 100;
-			lifeBarLabel.text = str(playerLifeBar.value) + "/100"
-			get_tree().paused = false
-			queue_free()
-		elif  phase.name == "SecondPhase":
-			bowAim.global_position = player.global_position
-			ShaderRect.material.set_shader_parameter("raio", aumentarRaio)
-			get_tree().paused = false
-			queue_free()
-			bow.queue_free()
-
+func handleButtonRespostaPressed(is_active: bool):
+	if is_active:
+		executarAcaoRespostaCorreta()	
+	else:
+		executarAcaoRespostaErrada()	
 	pass # Replace with function body.
 
-
-func _on_verdadeiro_pressed() -> void:
-	print("Pressionou o botao de verdadeiro")
 	
-	if phase != null:
-		if phase.name == "FirstPhase":
-			get_tree().paused = false
-			queue_free()
-
-		elif  phase.name == "SecondPhase":
-			get_tree().paused = false
-			queue_free()
-			var spawnRandom = randomBowSpawn()
-			#bow.queue_free()
-			bow.lastSpawn = spawnRandom.global_position
+func executarAcaoRespostaCorreta() -> void:
 	
-			bow.global_position = spawnRandom.global_position
-	#bow.queue_free()
-	pass # Replace with function body.
+		print("Pressionou o botao de verdadeiro ")
+		if phase != null:
+			if phase.name == "FirstPhase":
+				playerLifeBar.value = 100;
+				lifeBarLabel.text = str(playerLifeBar.value) + "/100"
+				get_tree().paused = false
+				queue_free()
+			elif  phase.name == "SecondPhase":
+				bowAim.global_position = player.global_position
+				ShaderRect.material.set_shader_parameter("raio", aumentarRaio)
+				get_tree().paused = false
+				queue_free()
+				bow.queue_free()
+		
+
+	
+	
+func executarAcaoRespostaErrada() -> void:
+		print("Pressionou o botao de falso ")
+		
+		if phase != null:
+			if phase.name == "FirstPhase":
+				get_tree().paused = false
+				queue_free()
+
+			elif  phase.name == "SecondPhase":
+				get_tree().paused = false
+				queue_free()
+				var spawnRandom = randomBowSpawn()
+				#bow.queue_free()
+				bow.lastSpawn = spawnRandom.global_position
+		
+				bow.global_position = spawnRandom.global_position

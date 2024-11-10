@@ -26,7 +26,7 @@ scale = Vector2(0.582157, 0.590993)
 texture = ExtResource("1_5esc1")
 
 [node name="Player" parent="." instance=ExtResource("2_74go0")]
-position = Vector2(66.8015, 111.098)
+position = Vector2(230.194, 80.8795)
 collision_layer = 1
 collision_mask = 536871046
 
@@ -110,6 +110,7 @@ script = ExtResource("5_j0psm")
 position = Vector2(-215.751, 129.763)
 
 [node name="EnemyNecro" parent="." groups=["Enemy_Necro"] instance=ExtResource("7_07h5k")]
+visible = false
 position = Vector2(549.758, 165.314)
 scale = Vector2(2.72, 2.3)
 
