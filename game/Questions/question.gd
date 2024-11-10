@@ -10,19 +10,33 @@ extends StaticBody2D
 @onready var phase = get_node("../")
 var oneTimeFirstPhase = true
 @export var aumentarRaio = 0.23
+@onready var LabelPergunta = $Container/GridContainer/Pergunta/PerguntaLabel
 
-# Called when the node enters the scene tree for the first time.
+var perguntaAtual: PoolDePerguntas.QuestionClass = PoolDePerguntas.getPerguntaRandomizada()
+
 func _ready() -> void:
-	pass # Replace with function body.
+	setPerguntaLabel(perguntaAtual.get_pergunta())
+	pass 
 
+func setPerguntaLabel(texto: String) -> void:
+	print("Pergunta: ", texto)
+	LabelPergunta.text = texto
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-
-	pass
-
-
-func _on_button_pressed() -> void:
+func randomBowSpawn() -> Node:
+	var random_child: Node
+	while true:
+		var random_index = randi() % SpawnBow.get_child_count()
+		random_child = SpawnBow.get_child(random_index)
+		
+		# Verifica se a posição é diferente da última posição de spawn
+		if random_child.global_position != bow.lastSpawn:
+			break  # Sai do loop se encontrar uma posição válida
+			
+	return random_child
+	
+func _on_falso_pressed() -> void:
+	print("Pressionou o botao de falso")
+	
 	if phase != null:
 		if phase.name == "FirstPhase":
 			playerLifeBar.value = 100;
@@ -38,18 +52,10 @@ func _on_button_pressed() -> void:
 
 	pass # Replace with function body.
 
-func randomBowSpawn() -> Node:
-	var random_child: Node
-	while true:
-		var random_index = randi() % SpawnBow.get_child_count()
-		random_child = SpawnBow.get_child(random_index)
-		
-		# Verifica se a posição é diferente da última posição de spawn
-		if random_child.global_position != bow.lastSpawn:
-			break  # Sai do loop se encontrar uma posição válida
-			
-	return random_child
-func _on_button_2_pressed() -> void:
+
+func _on_verdadeiro_pressed() -> void:
+	print("Pressionou o botao de verdadeiro")
+	
 	if phase != null:
 		if phase.name == "FirstPhase":
 			get_tree().paused = false

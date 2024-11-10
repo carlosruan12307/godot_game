@@ -1,17 +1,17 @@
 extends StaticBody2D
 
-@onready var question = preload("res://question.tscn")
+@onready var question = preload("res://game/Questions/question.tscn")
 
 @onready var phase = get_node("../")
 var oneTime = true;
 @export var lastSpawn  : Vector2 = Vector2(0,0);
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
 	lastSpawn = global_position
-	pass # Replace with function body.
+	pass 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
 	pass

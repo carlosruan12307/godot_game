@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmqopklktpgrq"]
+
+[ext_resource type="Script" path="res://game/Questions/question.gd" id="1_qaclg"]
+[ext_resource type="Texture2D" uid="uid://dnqto2gm1p815" path="res://game/Phases/Dungeon_brick_wall_grey.png.png" id="2_r2vq3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5my2"]
+
+[node name="Question" type="StaticBody2D"]
+z_index = 100
+position = Vector2(181, 156)
+scale = Vector2(0.72, 0.52)
+script = ExtResource("1_qaclg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i5my2")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Container"]
+layout_mode = 2
+offset_right = 1275.0
+offset_bottom = 437.0
+columns = 2
+
+[node name="DungeonBrickWallGrey_png" type="Sprite2D" parent="Container/GridContainer"]
+position = Vector2(637.5, 359)
+scale = Vector2(0.673437, 0.672222)
+texture = ExtResource("2_r2vq3")
+
+[node name="Falso" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = -747.657
+offset_top = 171.074
+offset_right = -289.657
+offset_bottom = 330.074
+scale = Vector2(1.353, 1.149)
+size_flags_stretch_ratio = 0.0
+text = "Falso
+"
+
+[node name="Verdadeiro" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = 73.5035
+offset_top = 171.074
+offset_right = 531.504
+offset_bottom = 330.074
+scale = Vector2(1.353, 1.149)
+size_flags_stretch_ratio = 0.0
+text = "Verdadeiro
+"
+
+[node name="Pergunta" type="Sprite2D" parent="Container/GridContainer"]
+position = Vector2(330.556, 121.154)
+scale = Vector2(0.235054, 0.276139)
+
+[node name="PerguntaLabel" type="RichTextLabel" parent="Container/GridContainer/Pergunta"]
+offset_left = -726.725
+offset_top = -128.558
+offset_right = -472.725
+offset_bottom = 32.4416
+scale = Vector2(16.6289, 9.97995)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/bold_italics_font_size = 4
+text = "pergunta"
+autowrap_mode = 2
+tab_size = 1
+text_direction = 1
+
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Falso" to="." method="_on_falso_pressed"]
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Verdadeiro" to="." method="_on_verdadeiro_pressed"]

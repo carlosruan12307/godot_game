@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var question = preload("res://question.tscn")
+@onready var question = preload("res://game/Questions/question.tscn")
 @onready var bow = get_node("Bow")
 @onready var marker = get_node("BowSpawn/Marker2D")
 

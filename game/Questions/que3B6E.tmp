@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmqopklktpgrq"]
+
+[ext_resource type="Script" path="res://game/Questions/question.gd" id="1_qaclg"]
+[ext_resource type="Texture2D" uid="uid://dnqto2gm1p815" path="res://game/Phases/Dungeon_brick_wall_grey.png.png" id="2_r2vq3"]
+[ext_resource type="FontFile" uid="uid://8akjubba2fib" path="res://assets/Fontes/lucon.ttf" id="3_7xhs7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5my2"]
+
+[node name="Question" type="StaticBody2D"]
+z_index = 100
+position = Vector2(181, 156)
+scale = Vector2(0.72, 0.52)
+script = ExtResource("1_qaclg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i5my2")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="Container"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="DungeonBrickWallGrey_png" type="Sprite2D" parent="Container/GridContainer"]
+position = Vector2(637.5, 359)
+scale = Vector2(0.673437, 0.672222)
+texture = ExtResource("2_r2vq3")
+
+[node name="PerguntaLabel" type="Label" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = -864.0
+offset_top = -331.0
+offset_right = -765.0
+offset_bottom = -286.0
+scale = Vector2(16.6289, 9.97995)
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("3_7xhs7")
+theme_override_font_sizes/font_size = 11
+text = "pergunta"
+horizontal_alignment = 1
+autowrap_mode = 1
+max_lines_visible = 1
+
+[node name="Falso" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = -747.657
+offset_top = 171.074
+offset_right = -289.657
+offset_bottom = 330.074
+scale = Vector2(1.353, 1.149)
+size_flags_stretch_ratio = 0.0
+text = "Falso
+"
+
+[node name="Verdadeiro" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
+offset_left = 73.5035
+offset_top = 171.074
+offset_right = 531.504
+offset_bottom = 330.074
+scale = Vector2(1.353, 1.149)
+size_flags_stretch_ratio = 0.0
+text = "Verdadeiro
+"
+
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Falso" to="." method="_on_falso_pressed"]
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Verdadeiro" to="." method="_on_verdadeiro_pressed"]

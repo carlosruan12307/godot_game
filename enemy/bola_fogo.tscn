@@ -1,7 +1,7 @@
 [gd_scene load_steps=80 format=3 uid="uid://br63hbyqyejgk"]
 
 [ext_resource type="Texture2D" uid="uid://dhak8h3opxfdf" path="res://assets/BolaFogo/fogoazul/img_0.png" id="1_60nfu"]
-[ext_resource type="Script" path="res://bola_fogo_new.gd" id="1_85lh6"]
+[ext_resource type="Script" path="res://enemy/bola_fogo_new.gd" id="1_85lh6"]
 [ext_resource type="Texture2D" uid="uid://t8d3783miq7r" path="res://assets/BolaFogo/fogoazul/img_1.png" id="2_u6o8e"]
 [ext_resource type="Texture2D" uid="uid://bwq4gdkvpp2l2" path="res://assets/BolaFogo/fogoazul/img_2.png" id="3_qs3ta"]
 [ext_resource type="Texture2D" uid="uid://bwv2r3jtxy838" path="res://assets/BolaFogo/fogoazul/img_3.png" id="4_ux4ny"]
