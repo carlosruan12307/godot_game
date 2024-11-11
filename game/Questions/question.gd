@@ -11,7 +11,11 @@ extends StaticBody2D
 var oneTimeFirstPhase = true
 @export var aumentarRaio = 0.23
 @onready var LabelPergunta = $Container/GridContainer/Pergunta/PerguntaLabel
+@onready var BotaoFalso  = $Container/GridContainer/DungeonBrickWallGrey_png/Falso
+@onready var BotaoVerdadeiro = $Container/GridContainer/DungeonBrickWallGrey_png/Verdadeiro
+@onready var COR_ORIGINAL_BOTAO = BotaoVerdadeiro.modulate 
 
+	
 var perguntaAtual: PoolDePerguntas.QuestionClass = PoolDePerguntas.getPerguntaRandomizada()
 
 func _ready() -> void:
@@ -21,6 +25,84 @@ func _ready() -> void:
 func setPerguntaLabel(texto: String) -> void:
 	print("Pergunta: ", texto)
 	LabelPergunta.text = texto
+
+	
+func handleButtonRespostaPressed(is_active: bool, nomeBotaoPressionado: String):
+	var respondeuCorretamente: bool = perguntaAtual.is_pergunta_correta() == is_active
+
+	#print("Valor pressionado: ", is_active)
+	#print("Valor correto da pergunta: ", perguntaAtual.is_pergunta_correta())
+	#print("Resultado:  ", respondeuCorretamente)
+	
+	print("resposta dessa pergunta: ", perguntaAtual.is_pergunta_correta())
+	#Muda a cor do botão pressionado
+	var botaoPressionado = hideBottaoPressionado(nomeBotaoPressionado)
+	botaoPressionado.modulate = hideGetCollorButton(respondeuCorretamente)
+
+	await get_tree().create_timer(3.0).timeout
+	botaoPressionado.modulate = COR_ORIGINAL_BOTAO
+
+	if respondeuCorretamente:
+		executarAcaoRespostaCorreta()
+	else:
+		executarAcaoRespostaErrada()
+
+	
+func hideGetCollorButton(reslt: bool):
+	const cor_verde = Color(0, 1, 0) 
+	const cor_vermelha = Color(1, 0, 0)  	
+	return cor_verde if reslt else cor_vermelha
+	
+
+
+func hideBottaoPressionado(nomeBotaoAtual: String):
+	print("Nome do botao pressionado: ", nomeBotaoAtual)
+	match nomeBotaoAtual:
+		"BotaoVerdadeiro": return BotaoVerdadeiro
+		"BotaoFalso": return BotaoFalso
+	
+	
+func executarAcaoRespostaCorreta() -> void:
+	if phase != null:
+		match PhasesStates.currentPhase:
+			PhasesStates.Phases.FIRST_PHASE:
+				giveBonusFirstPhase()
+			PhasesStates.Phases.SECOND_PHASE:
+				giveBonusSecondPhase()
+
+func executarAcaoRespostaErrada() -> void:
+		if phase != null:
+			match PhasesStates.currentPhase:
+				PhasesStates.Phases.FIRST_PHASE:
+					giveDebuffFisrtPhase()
+				PhasesStates.Phases.SECOND_PHASE:
+					giveDebuffSecondPhase()
+					
+func giveBonusFirstPhase() -> void:
+	playerLifeBar.value = 100;
+	lifeBarLabel.text = str(playerLifeBar.value) + "/100"
+	get_tree().paused = false
+	queue_free()
+	
+func giveBonusSecondPhase() -> void:
+	bowAim.global_position = player.global_position
+	ShaderRect.material.set_shader_parameter("raio", aumentarRaio)
+	get_tree().paused = false
+	queue_free()
+	bow.queue_free()
+	
+func giveDebuffFisrtPhase() -> void:
+	get_tree().paused = false
+	queue_free()
+	
+func giveDebuffSecondPhase() -> void:
+	get_tree().paused = false
+	queue_free()
+	var spawnRandom = randomBowSpawn()
+	#bow.queue_free()
+	bow.lastSpawn = spawnRandom.global_position
+		
+	bow.global_position = spawnRandom.global_position
 
 func randomBowSpawn() -> Node:
 	var random_child: Node
@@ -33,47 +115,3 @@ func randomBowSpawn() -> Node:
 			break  # Sai do loop se encontrar uma posição válida
 			
 	return random_child
-	
-func handleButtonRespostaPressed(is_active: bool):
-	if is_active:
-		executarAcaoRespostaCorreta()	
-	else:
-		executarAcaoRespostaErrada()	
-	pass # Replace with function body.
-
-	
-func executarAcaoRespostaCorreta() -> void:
-	
-		print("Pressionou o botao de verdadeiro ")
-		if phase != null:
-			if phase.name == "FirstPhase":
-				playerLifeBar.value = 100;
-				lifeBarLabel.text = str(playerLifeBar.value) + "/100"
-				get_tree().paused = false
-				queue_free()
-			elif  phase.name == "SecondPhase":
-				bowAim.global_position = player.global_position
-				ShaderRect.material.set_shader_parameter("raio", aumentarRaio)
-				get_tree().paused = false
-				queue_free()
-				bow.queue_free()
-		
-
-	
-	
-func executarAcaoRespostaErrada() -> void:
-		print("Pressionou o botao de falso ")
-		
-		if phase != null:
-			if phase.name == "FirstPhase":
-				get_tree().paused = false
-				queue_free()
-
-			elif  phase.name == "SecondPhase":
-				get_tree().paused = false
-				queue_free()
-				var spawnRandom = randomBowSpawn()
-				#bow.queue_free()
-				bow.lastSpawn = spawnRandom.global_position
-		
-				bow.global_position = spawnRandom.global_position

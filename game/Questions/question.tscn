@@ -67,5 +67,5 @@ autowrap_mode = 2
 tab_size = 1
 text_direction = 1
 
-[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Verdadeiro" to="." method="handleButtonRespostaPressed" binds= [true]]
-[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Falso" to="." method="handleButtonRespostaPressed" binds= [false]]
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Verdadeiro" to="." method="handleButtonRespostaPressed" binds= [true, "BotaoVerdadeiro"]]
+[connection signal="pressed" from="Container/GridContainer/DungeonBrickWallGrey_png/Falso" to="." method="handleButtonRespostaPressed" binds= [false, "BotaoFalso"]]
