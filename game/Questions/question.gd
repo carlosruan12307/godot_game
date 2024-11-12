@@ -16,15 +16,15 @@ var oneTimeFirstPhase = true
 @onready var COR_ORIGINAL_BOTAO = BotaoVerdadeiro.modulate 
 
 	
-var perguntaAtual: PoolDePerguntas.QuestionClass = PoolDePerguntas.getPerguntaRandomizada()
+var perguntaAtual: PoolDePerguntas.QuestionClass
 
 func _ready() -> void:
+	perguntaAtual = PoolDePerguntas.getPerguntaRandomizada()
+	print("Resposta correta: ", perguntaAtual.is_pergunta_correta())
 	setPerguntaLabel(perguntaAtual.get_pergunta())
 	pass 
 
 func setPerguntaLabel(texto: String) -> void:
-		
-	print("resposta dessa pergunta: ", perguntaAtual.is_pergunta_correta())
 	LabelPergunta.text = texto
 
 	

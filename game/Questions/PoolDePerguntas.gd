@@ -1,14 +1,19 @@
 extends Node
 
-const QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE: int = 10
+const QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE: int = 34
 const ARRAY_PERGUNTAS_REPETIDAS: Array = []
 
 func getPerguntaRandomizada() -> QuestionClass:
 	if Perguntas.has(TEMA_ATUAL):
-		var novaPergunta = getRandomSubset(Perguntas[TEMA_ATUAL])[QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE-1]
+		var novaPergunta: QuestionClass = getRandomElement(Perguntas[TEMA_ATUAL])
 		
-		if !ARRAY_PERGUNTAS_REPETIDAS.has(novaPergunta):
-			ARRAY_PERGUNTAS_REPETIDAS.append(novaPergunta)
+		##Isso aqui eh uma gambiarra pra evitar um looping inifito
+		if ARRAY_PERGUNTAS_REPETIDAS.size() == QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE:
+			ARRAY_PERGUNTAS_REPETIDAS.clear()
+			
+			
+		if !ARRAY_PERGUNTAS_REPETIDAS.has(novaPergunta.get_pergunta()):
+			ARRAY_PERGUNTAS_REPETIDAS.append(novaPergunta.get_pergunta())
 			return novaPergunta
 		else:
 			return getPerguntaRandomizada() 
@@ -20,15 +25,15 @@ func getPerguntaRandomizada() -> QuestionClass:
 	
 func setTemaAtual(tema: TEMA) -> void: TEMA_ATUAL = tema
 	
-func getRandomSubset(array: Array) -> Array:
-	if array.size() <= QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE: return array 
-	 
-	return getRandomArray(array).slice(0, QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE)  
+func getRandomElement(array: Array) -> Variant:
+	if array.size() == 0:
+		return null  
 
-func getRandomArray(array: Array) -> Array:
-	var shuffled_array = array.duplicate() 
-	shuffled_array.shuffle()  
-	return shuffled_array  
+	var random_index = randi() % array.size()  
+	return array[random_index]
+
+
+
 
 var TEMA_ATUAL: TEMA = TEMA.ESTRUTURA_DE_DADOS
 
