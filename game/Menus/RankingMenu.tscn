@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh0wc1dboukpg"]
+[gd_scene load_steps=5 format=3 uid="uid://dh0wc1dboukpg"]
 
 [ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="1_m4bpd"]
 [ext_resource type="Script" path="res://game/Scripts/Ranking.gd" id="1_x2rav"]
 [ext_resource type="Texture2D" uid="uid://d3luameo685v2" path="res://assets/Menu Buttons/Voltar.png" id="3_65tdy"]
+[ext_resource type="AudioStream" uid="uid://bafdw7g4pnrd1" path="res://assets/Audiopack/click_botao.wav" id="4_24b64"]
 
 [node name="RankingMenu" type="Node2D"]
 script = ExtResource("1_x2rav")
@@ -40,5 +41,8 @@ offset_bottom = 413.84
 position = Vector2(99, 46)
 scale = Vector2(0.346172, 0.489841)
 texture = ExtResource("3_65tdy")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_24b64")
 
 [connection signal="pressed" from="BotaoVoltar/VoltarButton" to="." method="_on_voltar_button_pressed"]

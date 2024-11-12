@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cybgxk54edobd"]
+[gd_scene load_steps=5 format=3 uid="uid://cybgxk54edobd"]
 
 [ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="1_pn7ws"]
 [ext_resource type="Script" path="res://game/Scripts/Options.gd" id="1_sft5a"]
 [ext_resource type="Texture2D" uid="uid://d3luameo685v2" path="res://assets/Menu Buttons/Voltar.png" id="3_pclps"]
+[ext_resource type="AudioStream" uid="uid://bafdw7g4pnrd1" path="res://assets/Audiopack/click_botao.wav" id="4_xvntt"]
 
 [node name="OptionsMenu" type="Node2D"]
 script = ExtResource("1_sft5a")
@@ -11,6 +12,7 @@ script = ExtResource("1_sft5a")
 position = Vector2(610, 336.51)
 scale = Vector2(1.28399, 1.03157)
 texture = ExtResource("1_pn7ws")
+metadata/_edit_lock_ = true
 
 [node name="OptionsLabelName" type="Label" parent="."]
 offset_left = 210.0
@@ -31,14 +33,56 @@ anchor_left = 0.5
 anchor_top = 0.278
 anchor_right = 0.5
 anchor_bottom = 0.278
-offset_left = -528.0
-offset_top = 318.84
-offset_right = -342.0
-offset_bottom = 413.84
+offset_left = -533.0
+offset_top = 340.84
+offset_right = -372.0
+offset_bottom = 416.84
+metadata/_edit_lock_ = true
 
 [node name="VoltarBackground" type="Sprite2D" parent="BotaoVoltar/VoltarButton"]
-position = Vector2(99, 46)
-scale = Vector2(0.346172, 0.489841)
+position = Vector2(78.228, 36.263)
+scale = Vector2(0.277391, 0.393435)
 texture = ExtResource("3_pclps")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BotaoTema1" type="Node" parent="VBoxContainer"]
+
+[node name="BotaoEstruturaDados" type="Button" parent="VBoxContainer/BotaoTema1"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.278
+anchor_right = 0.5
+anchor_bottom = 0.278
+offset_left = -338.0
+offset_top = 180.84
+offset_right = 245.0
+offset_bottom = 302.84
+theme_override_font_sizes/font_size = 32
+text = "Estrutura de dados"
+metadata/_edit_lock_ = true
+
+[node name="BotaoTema2" type="Node" parent="VBoxContainer"]
+
+[node name="BotaoPOO" type="Button" parent="VBoxContainer/BotaoTema2"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.278
+anchor_right = 0.5
+anchor_bottom = 0.278
+offset_left = -344.0
+offset_top = 12.84
+offset_right = 239.0
+offset_bottom = 134.84
+theme_override_font_sizes/font_size = 31
+text = "Programação Orientada a Objetos"
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xvntt")
+
 [connection signal="pressed" from="BotaoVoltar/VoltarButton" to="." method="_on_voltar_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoTema1/BotaoEstruturaDados" to="." method="_on_botao_estrutura_dados_pressed"]
+[connection signal="pressed" from="VBoxContainer/BotaoTema2/BotaoPOO" to="." method="_on_botao_poo_pressed"]

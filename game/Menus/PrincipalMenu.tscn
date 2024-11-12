@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgn8dreq4r5h4"]
+[gd_scene load_steps=7 format=3 uid="uid://dgn8dreq4r5h4"]
 
 [ext_resource type="Script" path="res://game/Scripts/MenuPrincipal.gd" id="1_0ukiw"]
 [ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="2_rm4of"]
 [ext_resource type="Texture2D" uid="uid://b1s0ugspcxsm6" path="res://assets/Menu Buttons/NovoJogo.png" id="3_axpsd"]
 [ext_resource type="Texture2D" uid="uid://cr7ed5gdolo1u" path="res://assets/Menu Buttons/Options.png" id="4_jqj6o"]
 [ext_resource type="Texture2D" uid="uid://cfby888maxq1" path="res://assets/Menu Buttons/Partidas.png" id="5_atp86"]
+[ext_resource type="AudioStream" uid="uid://bafdw7g4pnrd1" path="res://assets/Audiopack/click_botao.wav" id="6_x7ri2"]
 
 [node name="Menu" type="Node2D"]
 scale = Vector2(6.34213, 2.58277)
@@ -68,6 +69,9 @@ offset_bottom = 411.84
 position = Vector2(36, 41)
 scale = Vector2(0.357294, 0.462727)
 texture = ExtResource("5_atp86")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_x7ri2")
 
 [connection signal="pressed" from="BotaoIniciar/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="BotaoOptions/OptionsButton" to="." method="_on_options_button_pressed"]
