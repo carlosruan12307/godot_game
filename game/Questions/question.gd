@@ -23,7 +23,8 @@ func _ready() -> void:
 	pass 
 
 func setPerguntaLabel(texto: String) -> void:
-	print("Pergunta: ", texto)
+		
+	print("resposta dessa pergunta: ", perguntaAtual.is_pergunta_correta())
 	LabelPergunta.text = texto
 
 	
@@ -33,8 +34,7 @@ func handleButtonRespostaPressed(is_active: bool, nomeBotaoPressionado: String):
 	#print("Valor pressionado: ", is_active)
 	#print("Valor correto da pergunta: ", perguntaAtual.is_pergunta_correta())
 	#print("Resultado:  ", respondeuCorretamente)
-	
-	print("resposta dessa pergunta: ", perguntaAtual.is_pergunta_correta())
+
 	#Muda a cor do botão pressionado
 	var botaoPressionado = hideBottaoPressionado(nomeBotaoPressionado)
 	botaoPressionado.modulate = hideGetCollorButton(respondeuCorretamente)

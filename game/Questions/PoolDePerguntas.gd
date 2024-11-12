@@ -1,13 +1,21 @@
 extends Node
 
 const QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE: int = 10
+const ARRAY_PERGUNTAS_REPETIDAS: Array = []
 
 func getPerguntaRandomizada() -> QuestionClass:
 	if Perguntas.has(TEMA_ATUAL):
-		return getRandomSubset(Perguntas[TEMA_ATUAL])[QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE-1]
+		var novaPergunta = getRandomSubset(Perguntas[TEMA_ATUAL])[QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE-1]
+		
+		if !ARRAY_PERGUNTAS_REPETIDAS.has(novaPergunta):
+			ARRAY_PERGUNTAS_REPETIDAS.append(novaPergunta)
+			return novaPergunta
+		else:
+			return getPerguntaRandomizada() 
 	else:
 		print("Tema atual não encontrado em Perguntas")
 		return null
+
 
 	
 func setTemaAtual(tema: TEMA) -> void: TEMA_ATUAL = tema
