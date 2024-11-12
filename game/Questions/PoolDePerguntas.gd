@@ -1,10 +1,13 @@
 extends Node
 
-const QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE: int = 34
+var currentPoolSize = 2
+var QUANTIDADE_PERGUNTAS_RETORNADAS_ATUALMENTE: int = currentPoolSize - 2
 const ARRAY_PERGUNTAS_REPETIDAS: Array = []
+
 
 func getPerguntaRandomizada() -> QuestionClass:
 	if Perguntas.has(TEMA_ATUAL):
+		currentPoolSize = Perguntas[TEMA_ATUAL].size()
 		var novaPergunta: QuestionClass = getRandomElement(Perguntas[TEMA_ATUAL])
 		
 		##Isso aqui eh uma gambiarra pra evitar um looping inifito
@@ -67,6 +70,7 @@ class QuestionClass:
 	func is_pergunta_correta() -> bool: return is_true
 
 # Estrutura de Dados - Perguntas fáceis
+
 var Perguntas: Dictionary = {
 	TEMA.ESTRUTURA_DE_DADOS: [
 		QuestionClass.new("Uma pilha funciona no modo FIFO (First In, First Out)?", false, PESO_PERGUNTA.FACIL),
