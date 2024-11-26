@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw4m8qdxhb2k0"
-path="res://.godot/imported/LifeBar.png-6e0db45946824095b4b58606b24ba02a.ctex"
+uid="uid://c3yo8ugrjcqqu"
+path="res://.godot/imported/LifeBarChanged.png-3ac2daa1f334577acd47d5f1ca0b3d05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/Phases/LifeBar.png"
-dest_files=["res://.godot/imported/LifeBar.png-6e0db45946824095b4b58606b24ba02a.ctex"]
+source_file="res://game/Phases/assets/LifeBarChanged.png"
+dest_files=["res://.godot/imported/LifeBarChanged.png-3ac2daa1f334577acd47d5f1ca0b3d05.ctex"]
 
 [params]
 

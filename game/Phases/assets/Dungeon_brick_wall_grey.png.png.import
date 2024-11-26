@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnqto2gm1p815"
-path="res://.godot/imported/Dungeon_brick_wall_grey.png.png-df9df63ea8cd43f8003cad4ed00a0392.ctex"
+path="res://.godot/imported/Dungeon_brick_wall_grey.png.png-25577511e2264cc9c0fc3d66f985dbd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/Phases/Dungeon_brick_wall_grey.png.png"
-dest_files=["res://.godot/imported/Dungeon_brick_wall_grey.png.png-df9df63ea8cd43f8003cad4ed00a0392.ctex"]
+source_file="res://game/Phases/assets/Dungeon_brick_wall_grey.png.png"
+dest_files=["res://.godot/imported/Dungeon_brick_wall_grey.png.png-25577511e2264cc9c0fc3d66f985dbd7.ctex"]
 
 [params]
 

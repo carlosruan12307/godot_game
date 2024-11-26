@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://6sigjucmljjr"]
+
+[ext_resource type="Script" path="res://game/Scripts/Intro.gd" id="1_ix5l7"]
+[ext_resource type="Texture2D" uid="uid://34rpdyvx8fxt" path="res://assets/Menu Buttons/Menu_Principal.png" id="2_rwwcw"]
+
+[node name="Intro_tscn" type="Node2D"]
+script = ExtResource("1_ix5l7")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+position = Vector2(610, 336.51)
+scale = Vector2(1.28399, 1.03157)
+texture = ExtResource("2_rwwcw")
+
+[node name="LoreTextPt1" type="RichTextLabel" parent="."]
+offset_left = 191.0
+offset_top = 139.0
+offset_right = 580.0
+offset_bottom = 397.0
+scale = Vector2(2.28753, 1.55356)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 7
+text = "Após uma exaustiva semana de provas na faculdade, nosso protagonista, um dedicado estudante de ciência da computação, finalmente cedeu ao cansaço e caiu em um sono profundo. No entanto, seu descanso não foi exatamente tranquilo. Ele despertou em um mundo fantástico, misterioso e, ao mesmo tempo, desafiador. Preso em um sonho peculiar, ele logo descobriu que cada desafio que enfrentava representava um dos conteúdos das provas que ele havia estudado."
+autowrap_mode = 2
+tab_size = 0
+text_direction = 1
+
+[node name="Continuar" type="Button" parent="."]
+offset_left = 886.0
+offset_top = 521.0
+offset_right = 1096.0
+offset_bottom = 604.0
+scale = Vector2(1.353, 1.149)
+size_flags_stretch_ratio = 0.0
+text = "Continuar"
+
+[node name="LoreTextPt2" type="RichTextLabel" parent="."]
+offset_left = 175.0
+offset_top = 177.0
+offset_right = 564.0
+offset_bottom = 435.0
+scale = Vector2(2.28753, 1.55356)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 7
+text = "Para escapar, ele precisará usar sua inteligência e coragem, enfrentando inimigos que guardam os segredos desse mundo. Ao vencê-los, ganhará poderes únicos e responderá a perguntas que desbloqueiam seu caminho de volta à realidade. Só há uma saída: resolver os enigmas, superar os obstáculos e provar que ele realmente está preparado para tudo o que estudou. O sonho se torna uma última prova... e o único jeito de acordar é vencer."
+autowrap_mode = 2
+tab_size = 0
+text_direction = 1
+
+[connection signal="pressed" from="Continuar" to="." method="_on_continuar_pressed"]

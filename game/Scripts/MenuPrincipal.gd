@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 func _on_start_button_pressed() -> void: 
 	audio_click_player.play()
 	await get_tree().create_timer(0.5).timeout
-	PhasesStates.setSceneSelected(phases.FIRST_PHASE)
+	PhasesStates.setSceneSelected(phases.INTRO_MENU)
 
 func _on_options_button_pressed() -> void: 
 	audio_click_player.play()

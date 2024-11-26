@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b350ay2asc3mm" path="res://enemy/enemy.tscn" id="3_f6rkq"]
 [ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="4_av6i2"]
 [ext_resource type="Texture2D" uid="uid://bnhikcdgnjlg8" path="res://assets/EnemysSprites/Lightning Strike.png" id="5_6go8w"]
-[ext_resource type="Script" path="res://game/Phases/static_body_2d.gd" id="5_icmgj"]
+[ext_resource type="Script" path="res://game/Phases/gd/static_body_2d.gd" id="5_icmgj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hvqcl"]
 

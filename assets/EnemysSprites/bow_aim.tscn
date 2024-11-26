@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/EnemysSprites/bow_aim.gd" id="1_6kdou"]
 [ext_resource type="Texture2D" uid="uid://c4oor0k6wbip8" path="res://assets/Itens/Untitled-1.png" id="1_nxpod"]
-[ext_resource type="Script" path="res://game/Phases/untitled_1.gd" id="2_lovcw"]
+[ext_resource type="Script" path="res://game/Phases/gd/untitled_1.gd" id="2_lovcw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g34u7"]
 radius = 31.7805

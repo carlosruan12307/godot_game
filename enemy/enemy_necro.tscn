@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://enemy/enemy_necro.gd" id="1_mcbgp"]
 [ext_resource type="Texture2D" uid="uid://dnn2uvebwnvvc" path="res://assets/EnemysSprites/Necromancer_creativekind-Sheet.png" id="2_2yvyy"]
 [ext_resource type="Script" path="res://enemy/state_machine_necro.gd" id="3_5rspr"]
-[ext_resource type="Texture2D" uid="uid://c3yo8ugrjcqqu" path="res://game/Phases/LifeBarChanged.png" id="3_haj2d"]
+[ext_resource type="Texture2D" uid="uid://c3yo8ugrjcqqu" path="res://game/Phases/assets/LifeBarChanged.png" id="3_haj2d"]
 [ext_resource type="Script" path="res://enemy/state_necro.gd" id="4_xf781"]
 [ext_resource type="Script" path="res://enemy/walk_necro.gd" id="5_2y0s6"]
 [ext_resource type="Script" path="res://enemy/dead_necro.gd" id="6_wvba5"]

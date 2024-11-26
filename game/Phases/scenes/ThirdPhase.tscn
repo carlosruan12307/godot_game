@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dwbub4vxat61s"]
 
-[ext_resource type="Texture2D" uid="uid://d060m8rkakl0u" path="res://assets/Map/ThirdPhase.png" id="1_sthq7"]
-[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_sj1ql"]
-[ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="3_qdnm7"]
+[ext_resource type="Texture2D" uid="uid://d060m8rkakl0u" path="res://assets/Map/ThirdPhase.png" id="1_exs42"]
+[ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_hcq6x"]
+[ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="3_r6u4k"]
 
 [node name="ThirdPhase" type="Node2D"]
 scale = Vector2(1.02616, 1.14947)
@@ -10,9 +10,9 @@ scale = Vector2(1.02616, 1.14947)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(635, 316)
 scale = Vector2(0.637182, 0.584419)
-texture = ExtResource("1_sthq7")
+texture = ExtResource("1_exs42")
 
-[node name="Player" parent="." instance=ExtResource("2_sj1ql")]
+[node name="Player" parent="." instance=ExtResource("2_hcq6x")]
 position = Vector2(190.029, 450.642)
 scale = Vector2(1.65086, 2.09373)
 collision_layer = 137
@@ -73,7 +73,7 @@ scale = Vector2(7.85882, 1)
 polygon = PackedVector2Array(57.767, -273.246, 58.1479, -263.31, 42.0239, -257.348, 41.643, -281.195)
 
 [node name="AreaForaDoJogo" type="Node" parent="."]
-script = ExtResource("3_qdnm7")
+script = ExtResource("3_r6u4k")
 
 [node name="LimiteInicial" type="StaticBody2D" parent="AreaForaDoJogo"]
 

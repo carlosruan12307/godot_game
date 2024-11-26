@@ -57,7 +57,7 @@
 [ext_resource type="Texture2D" uid="uid://cs83bwekadd7y" path="res://assets/PlayerSprites/Adventurer-1.5/adventurer-bow-Sheet.png" id="46_j2h55"]
 [ext_resource type="Texture2D" uid="uid://wf4v3b5u14bu" path="res://assets/PlayerSprites/Adventurer-1.5/Individual Sprites/adventurer-slide-01.png" id="47_g2yta"]
 [ext_resource type="Script" path="res://player/hurt.gd" id="54_wx5da"]
-[ext_resource type="Texture2D" uid="uid://c3yo8ugrjcqqu" path="res://game/Phases/LifeBarChanged.png" id="55_tewmx"]
+[ext_resource type="Texture2D" uid="uid://c3yo8ugrjcqqu" path="res://game/Phases/assets/LifeBarChanged.png" id="55_tewmx"]
 [ext_resource type="Script" path="res://player/atack_bow.gd" id="56_l8ut5"]
 [ext_resource type="Script" path="res://player/slide.gd" id="59_rvklb"]
 

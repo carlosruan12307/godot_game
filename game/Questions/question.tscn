@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmqopklktpgrq"]
 
 [ext_resource type="Script" path="res://game/Questions/question.gd" id="1_qaclg"]
-[ext_resource type="Texture2D" uid="uid://dnqto2gm1p815" path="res://game/Phases/Dungeon_brick_wall_grey.png.png" id="2_r2vq3"]
+[ext_resource type="Texture2D" uid="uid://dnqto2gm1p815" path="res://game/Phases/assets/Dungeon_brick_wall_grey.png.png" id="2_r2vq3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5my2"]
 
