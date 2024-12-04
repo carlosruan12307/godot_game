@@ -72,6 +72,7 @@ texture = ExtResource("5_atp86")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_x7ri2")
+autoplay = true
 
 [connection signal="pressed" from="BotaoIniciar/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="BotaoOptions/OptionsButton" to="." method="_on_options_button_pressed"]

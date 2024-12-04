@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bugmyh4jgx60o"]
+[gd_scene load_steps=12 format=3 uid="uid://bugmyh4jgx60o"]
 
 [ext_resource type="Script" path="res://game/Phases/gd/second_phase.gd" id="1_4qse7"]
 [ext_resource type="Texture2D" uid="uid://cpk0ip8p2gwmh" path="res://assets/Map/SecondPhase.png" id="2_isfdj"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cfj2x3nudg8bv" path="res://assets/EnemysSprites/bow_aim.tscn" id="7_jv14l"]
 [ext_resource type="PackedScene" uid="uid://bqxt1v1idqf54" path="res://enemy/enemy_necro.tscn" id="8_ev8f5"]
 [ext_resource type="PackedScene" uid="uid://df1jd6o33aibe" path="res://assets/Itens/bow.tscn" id="9_0d4k5"]
+[ext_resource type="AudioStream" uid="uid://b1c56tptdcbi0" path="res://assets/Audiopack/Gerald Marino - God of War 2 - The End Begins (8-bit cover).wav" id="10_b0m6b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dvksu"]
 shader = ExtResource("5_18i6c")
@@ -20,13 +21,13 @@ shader_parameter/centerY = 0.64
 scale = Vector2(1.10776, 1.12513)
 script = ExtResource("1_4qse7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(578.5, 324.5)
 scale = Vector2(0.582157, 0.590993)
 texture = ExtResource("2_isfdj")
 
 [node name="Player" parent="." instance=ExtResource("3_e2166")]
-position = Vector2(230.194, 80.8795)
+position = Vector2(64.0933, 475.501)
 collision_layer = 1
 collision_mask = 536871046
 
@@ -94,6 +95,7 @@ color = Color(0, 0, 0, 1)
 position = Vector2(584.062, 325.296)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -110,8 +112,7 @@ script = ExtResource("6_jl3bv")
 position = Vector2(-215.751, 129.763)
 
 [node name="EnemyNecro" parent="." groups=["Enemy_Necro"] instance=ExtResource("8_ev8f5")]
-visible = false
-position = Vector2(549.758, 165.314)
+position = Vector2(539.828, 179.535)
 scale = Vector2(2.72, 2.3)
 
 [node name="Bow" parent="." instance=ExtResource("9_0d4k5")]
@@ -145,5 +146,12 @@ scale = Vector2(1.10776, 1.12513)
 
 [node name="Marker2D4" type="Marker2D" parent="BowSpawn"]
 position = Vector2(1060, 247)
+
+[node name="SoundTrackSecondPhase" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("10_b0m6b")
+volume_db = -9.705
+pitch_scale = 1.33
+autoplay = true
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]

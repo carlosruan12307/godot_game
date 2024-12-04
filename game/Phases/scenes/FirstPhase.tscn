@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bterf0xuop32e"]
+[gd_scene load_steps=18 format=3 uid="uid://bterf0xuop32e"]
 
 [ext_resource type="Texture2D" uid="uid://ptqc2yguk23u" path="res://assets/Map/moon.png" id="1_5tcli"]
 [ext_resource type="PackedScene" uid="uid://cw7oidbwayfgj" path="res://player/player.tscn" id="2_y617p"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://game/Scripts/AreaForaDoJogo.gd" id="4_av6i2"]
 [ext_resource type="Texture2D" uid="uid://bnhikcdgnjlg8" path="res://assets/EnemysSprites/Lightning Strike.png" id="5_6go8w"]
 [ext_resource type="Script" path="res://game/Phases/gd/static_body_2d.gd" id="5_icmgj"]
+[ext_resource type="AudioStream" uid="uid://bhtsghaggrb7g" path="res://assets/Audiopack/AdhesiveWombat - Night Shade ♫ NO COPYRIGHT 8-bit Music.wav" id="7_msulp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hvqcl"]
 
@@ -234,6 +235,10 @@ offset_bottom = 86.3002
 rotation = 1.5708
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "progresso fase"
+
+[node name="SoundTrackPhaseOne" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_msulp")
+autoplay = true
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]
 [connection signal="area_entered" from="StaticBody2D/Area2D" to="Player" method="_on_area_2d_area_entered"]
