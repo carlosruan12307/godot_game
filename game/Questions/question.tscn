@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmqopklktpgrq"]
+[gd_scene load_steps=6 format=3 uid="uid://cmqopklktpgrq"]
 
 [ext_resource type="Script" path="res://game/Questions/question.gd" id="1_qaclg"]
-[ext_resource type="Texture2D" uid="uid://dnqto2gm1p815" path="res://game/Phases/assets/Dungeon_brick_wall_grey.png.png" id="2_r2vq3"]
+[ext_resource type="Texture2D" uid="uid://bkgpcsvrwkxjs" path="res://assets/Map/background_pergunta.jpg" id="2_fqxbq"]
+[ext_resource type="Texture2D" uid="uid://n036a0xok4lv" path="res://assets/Map/falsee.png" id="3_itfjw"]
+[ext_resource type="Texture2D" uid="uid://hee6t7hdlatd" path="res://assets/Map/botao_false.png" id="4_xq21g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i5my2"]
 
@@ -28,36 +30,36 @@ columns = 2
 
 [node name="DungeonBrickWallGrey_png" type="Sprite2D" parent="Container/GridContainer"]
 position = Vector2(637.5, 359)
-scale = Vector2(0.673437, 0.672222)
-texture = ExtResource("2_r2vq3")
+scale = Vector2(1.28834, 0.916669)
+texture = ExtResource("2_fqxbq")
 
 [node name="Verdadeiro" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
-offset_left = -747.657
-offset_top = 171.074
-offset_right = -289.657
-offset_bottom = 330.074
-scale = Vector2(1.353, 1.149)
+offset_left = -195.126
+offset_top = 256.615
+offset_right = 315.874
+offset_bottom = 641.615
+scale = Vector2(0.258558, 0.506581)
 size_flags_stretch_ratio = 0.0
-text = "Verdadeiro"
+theme_override_icons/icon = ExtResource("3_itfjw")
 
 [node name="Falso" type="Button" parent="Container/GridContainer/DungeonBrickWallGrey_png"]
-offset_left = 73.5035
-offset_top = 171.074
-offset_right = 531.504
-offset_bottom = 330.074
-scale = Vector2(1.353, 1.149)
+offset_left = 91.6337
+offset_top = 250.321
+offset_right = 546.634
+offset_bottom = 673.321
+scale = Vector2(0.25436, 0.474784)
 size_flags_stretch_ratio = 0.0
-text = "Falso"
+theme_override_icons/icon = ExtResource("4_xq21g")
 
 [node name="Pergunta" type="Sprite2D" parent="Container/GridContainer"]
 position = Vector2(330.556, 121.154)
 scale = Vector2(0.235054, 0.276139)
 
 [node name="PerguntaLabel" type="RichTextLabel" parent="Container/GridContainer/Pergunta"]
-offset_left = -726.725
-offset_top = -128.558
-offset_right = -472.725
-offset_bottom = 32.4416
+offset_left = -11.8197
+offset_top = 229.817
+offset_right = 150.18
+offset_bottom = 350.817
 scale = Vector2(16.6289, 9.97995)
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 7

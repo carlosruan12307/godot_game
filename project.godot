@@ -20,7 +20,7 @@ config/icon="res://assets/icon.svg"
 Questions="*res://game/Scripts/Questions.gd"
 PlayerStatus="*res://player/Scripts/PlayerStatus.gd"
 PhasesStates="*res://game/Scripts/PhasesStates.gd"
-MatchesResult="*res://game/Scripts/MatchesResult.gd"
+PerguntasUtil="*res://game/Scripts/PerguntasUtil.gd"
 PoolDePerguntas="*res://game/Questions/PoolDePerguntas.gd"
 
 [display]
