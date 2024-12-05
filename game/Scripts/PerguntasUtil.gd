@@ -39,9 +39,9 @@ class CalcularInformacoes:
 
 		return total_score
 		
-	func save_new_matc(new_match):
-		PerguntasUtil.historico_partidas.insert(0, new_match)
+	static func salvar_nova_pergunta_jogada(nova_pergunta_jogada):
+		PerguntasUtil.historico_partidas.insert(0, nova_pergunta_jogada)
 	
 		
-	func get_history() -> Array:
+	static func get_historico() -> Array:
 		return PerguntasUtil.historico_partidas

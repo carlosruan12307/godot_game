@@ -17,81 +17,72 @@ var oneTimeFirstPhase = true
 @onready var labelTimer = $TimerLabel
 @onready var clock_timer = $Timer
 var perguntaAtual: PoolDePerguntas.QuestionClass
+var tempo_decorrido: float = 0.0
+var tempo_limite: float = 20.00
+var epsilon: float = 0.01
 
 
 func _ready() -> void:
 	perguntaAtual = PoolDePerguntas.getPerguntaRandomizada()
-	print("Resposta correta: ", perguntaAtual.is_pergunta_correta())
 	setPerguntaLabel(perguntaAtual.get_pergunta())
 	_clock_start()
-	pass 
 	
-	# Variável para armazenar o tempo decorrido
-var tempo_decorrido: float = 0.0
-var tempo_limite: float = 20.00
-var epsilon: float = 0.01  # Tolerância para a comparação
+	print("Resposta correta: ", perguntaAtual.is_pergunta_correta())
+	pass 
+	  
 
-# Atualiza o tempo decorrido e exibe no label
 func _process(delta: float) -> void:
 	tempo_decorrido += delta
 	
-	# Verifica se a diferença entre os valores é menor que a tolerância
 	if abs(tempo_decorrido - tempo_limite) < epsilon:
 		hideGetCollorButton(false)
-		print(tempo_limite == tempo_decorrido , "sao iguais")
 		executarAcaoRespostaErrada()
 		
 	_update_timer_label()
 
-# Função para iniciar o timer
 func _clock_start() -> void:
-	tempo_decorrido = 0.0 # Reseta o tempo ao iniciar
+	tempo_decorrido = 0.0 
 	clock_timer.start()
 
 func _clock_stop_and_capture() -> float:
 	clock_timer.stop()
 	return tempo_decorrido
 	
-func calcular_score() -> int:
-	# Define os valores de normalização
+func calcular_score(
+	tempo_decorrido: float = tempo_decorrido,
+	limite_tempo: float = tempo_limite) -> int:
+	
 	var pontuacao_maxima: float = 500.0
 	var pontuacao_minima: float = 1.0
+
+	tempo_decorrido = clamp(tempo_decorrido, 0, limite_tempo)
 	
-	# Fórmula para calcular a pontuação baseada no tempo (quanto menor o tempo, maior o score)
-	var pontuacao: float = pontuacao_maxima / (1 + _clock_stop_and_capture())
+	var pontuacao: float = pontuacao_maxima - ((pontuacao_maxima - pontuacao_minima) * (tempo_decorrido / limite_tempo))
 
-	return max(int(round(pontuacao)), pontuacao_minima)
+	return int(round(pontuacao))
 
-func _update_timer_label() -> void:
-	labelTimer.text = "Tempo: " + str(tempo_decorrido).pad_decimals(2) + "s" 
+func _update_timer_label() -> void: labelTimer.text = "Tempo: " + str(tempo_decorrido).pad_decimals(2) + "s" 
 
-func setPerguntaLabel(texto: String) -> void:
-	LabelPergunta.text = texto
+func setPerguntaLabel(texto: String) -> void: LabelPergunta.text = texto
 	
 func handleButtonRespostaPressed(is_active: bool, nomeBotaoPressionado: String):
 	var respondeuCorretamente: bool = perguntaAtual.is_pergunta_correta() == is_active
-
-	#print("Valor pressionado: ", is_active)
-	#print("Valor correto da pergunta: ", perguntaAtual.is_pergunta_correta())
-	#print("Resultado:  ", respondeuCorretamente)
-
-	#Muda a cor do botão pressionado
 	var botaoPressionado = hideBottaoPressionado(nomeBotaoPressionado)
 	botaoPressionado.modulate = hideGetCollorButton(respondeuCorretamente)
-
-	await get_tree().create_timer(3.0).timeout
-	botaoPressionado.modulate = COR_ORIGINAL_BOTAO
-	
-	print("Score gerado: ", calcular_score())
 	
 	var novaQuestaoGerada: PerguntasUtil.PerguntaRespondida = PerguntasUtil.PerguntaRespondida.new(
-		0, respondeuCorretamente, 1.0
+		calcular_score() , respondeuCorretamente, tempo_decorrido
 	)
+	
+	PerguntasUtil.CalcularInformacoes.salvar_nova_pergunta_jogada(novaQuestaoGerada)
+	
+	await get_tree().create_timer(3.0).timeout
+	botaoPressionado.modulate = COR_ORIGINAL_BOTAO
 
-	#if respondeuCorretamente:
-		#executarAcaoRespostaCorreta()
-	#else:
-		#executarAcaoRespostaErrada()
+	if respondeuCorretamente:
+		executarAcaoRespostaCorreta()
+	else:
+		executarAcaoRespostaErrada()
 
 func hideGetCollorButton(reslt: bool):
 	const cor_verde = Color(0, 1, 0) 
@@ -99,10 +90,9 @@ func hideGetCollorButton(reslt: bool):
 	return cor_verde if reslt else cor_vermelha	
 
 func hideBottaoPressionado(nomeBotaoAtual: String):
-	print("Nome do botao pressionado: ", nomeBotaoAtual)
 	match nomeBotaoAtual:
-		"BotaoVerdadeiro": return BotaoVerdadeiro
-		"BotaoFalso": return BotaoFalso
+		"BotaoVerdadeiro":	return	BotaoVerdadeiro
+		"BotaoFalso":	return	BotaoFalso
 		
 func executarAcaoRespostaCorreta() -> void:
 	if phase != null:
@@ -113,12 +103,10 @@ func executarAcaoRespostaCorreta() -> void:
 				giveBonusSecondPhase()
 
 func executarAcaoRespostaErrada() -> void:
-		if phase != null:
-			match PhasesStates.currentPhase:
-				PhasesStates.Phases.FIRST_PHASE:
-					giveDebuffFisrtPhase()
-				PhasesStates.Phases.SECOND_PHASE:
-					giveDebuffSecondPhase()
+	if phase != null:
+		match PhasesStates.currentPhase:
+			PhasesStates.Phases.FIRST_PHASE: giveDebuffFisrtPhase()
+			PhasesStates.Phases.SECOND_PHASE:giveDebuffSecondPhase()
 					
 func giveBonusFirstPhase() -> void:
 	playerLifeBar.value = 100;
@@ -141,9 +129,7 @@ func giveDebuffSecondPhase() -> void:
 	get_tree().paused = false
 	queue_free()
 	var spawnRandom = randomBowSpawn()
-	#bow.queue_free()
 	bow.lastSpawn = spawnRandom.global_position
-		
 	bow.global_position = spawnRandom.global_position
 
 func randomBowSpawn() -> Node:
@@ -152,8 +138,6 @@ func randomBowSpawn() -> Node:
 		var random_index = randi() % SpawnBow.get_child_count()
 		random_child = SpawnBow.get_child(random_index)
 		
-		# Verifica se a posição é diferente da última posição de spawn
-		if random_child.global_position != bow.lastSpawn:
-			break  # Sai do loop se encontrar uma posição válida
+		if random_child.global_position != bow.lastSpawn: break  
 			
 	return random_child
