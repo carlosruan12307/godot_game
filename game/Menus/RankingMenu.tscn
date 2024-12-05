@@ -46,9 +46,13 @@ texture = ExtResource("3_65tdy")
 stream = ExtResource("4_24b64")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 97.0
-offset_top = 190.0
-offset_right = 1155.0
-offset_bottom = 436.0
+offset_left = 121.0
+offset_top = 180.0
+offset_right = 695.0
+offset_bottom = 308.0
+scale = Vector2(1.82185, 2.04941)
+text = "Acertos: 0 Pontuação Total: 0 Tempo Total Respondendo: 0.00 Proporção Acertos: 0/0
+Acertos: 0 Pontução Total: 0 Tempo Total Respondendo: 0.00 Proporcao Acertos: 0/0
+"
 
 [connection signal="pressed" from="BotaoVoltar/VoltarButton" to="." method="_on_voltar_button_pressed"]

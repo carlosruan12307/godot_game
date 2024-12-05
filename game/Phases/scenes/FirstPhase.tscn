@@ -79,13 +79,6 @@ collision_mask = 0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
 polygon = PackedVector2Array(-66.1677, -81, -18.0689, -84, 5.34431, -184, 81.1827, -184, 81.1827, -156, 5.47156, -160, -16.7964, -65, -66.0405, -55)
 
-[node name="Slime1" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(1079, 295)
-collision_layer = 4
-collision_mask = 129
-distancia = 200
-SPEED = 200
-
 [node name="AreaForaDoJogo" type="Node" parent="."]
 script = ExtResource("4_av6i2")
 
@@ -190,6 +183,56 @@ text = "progresso fase"
 [node name="SoundTrackPhaseOne" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_msulp")
 autoplay = true
+
+[node name="inimigos" type="Node" parent="."]
+
+[node name="Slime1" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(1028.85, 350.563)
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 129
+distancia = 200
+SPEED = 200
+
+[node name="Slime2" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(725.723, 347.873)
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 129
+distancia = 200
+SPEED = 200
+
+[node name="Slime3" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(254.984, 418.703)
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 129
+distancia = 200
+SPEED = 200
+
+[node name="Slime4" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(451.125, 378.357)
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 129
+distancia = 200
+SPEED = 200
+
+[node name="Slime5" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(289.754, 203.524)
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 129
+distancia = 200
+SPEED = 200
+
+[node name="Slime6" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
+position = Vector2(780.999, 51.105)
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 129
+distancia = 200
+SPEED = 200
 
 [connection signal="body_entered" from="AreaForaDoJogo/Area2D" to="AreaForaDoJogo" method="goToNextArea"]
 [connection signal="area_entered" from="StaticBody2D/Area2D" to="Player" method="_on_area_2d_area_entered"]

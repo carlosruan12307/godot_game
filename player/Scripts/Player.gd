@@ -50,22 +50,22 @@ func handleMortePersonagem() -> void:
 			state.queue_free()
 			set_collision_layer_value(2,false)
 			await get_tree().create_timer(2).timeout
-			PhasesStates.LifeBefore = 0
-			handleFimDoJogoMatouNecro()
+			handleFimDoJogoMorreu()
 		
 
-func handleFimDoJogoMatouNecro() -> void:
+func handleFimDoJogoMorreu() -> void:
+	PhasesStates.LifeBefore = 0
 	PhasesStates.comeBackPrincipallMenu()
 	
 	var novoHistorico = PerguntasUtil.PartidaResultadoFinal.new(
-			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countScore() + 778,
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countScore(),
 			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntPartidasCorretas(),
 			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntTempoRespondendo(),
 			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.stringProporcaoPerguntas()
 	)
 	
 	PerguntasUtil.salvarNovoHistorico(novoHistorico)
-	
+	PerguntasUtil.partida_atual = []	
 func _process(delta: float) -> void:
 
 	if progressBarLifeGain and progressBarLifeGain.value >= 1000 and oneTimeQuestion:

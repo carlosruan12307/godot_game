@@ -7,10 +7,13 @@ class_name DeadEnemy
 @onready var Body = $"../.."
 @onready var progressGainLife = get_node("../../../ProgressBarSlimes")
 
+const valorMaximoProgressBar = 1000
+const totalInimigosAtualmente = 1
+const ponderamentoInimigoScore = (valorMaximoProgressBar/totalInimigosAtualmente)
+
 # Called when the node enters the scene tree for the first time.
 func Enter():
-	
-	progressGainLife.value = progressGainLife.value + (1000/1)
+	progressGainLife.value = progressGainLife.value + ponderamentoInimigoScore
 	animation.play("dead")
 	pass
 func Exit():

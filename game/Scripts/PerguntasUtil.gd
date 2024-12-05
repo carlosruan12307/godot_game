@@ -86,7 +86,7 @@ class CalcularInformacoes:
 		for item in PerguntasUtil.historico_partidass:
 			if item is PartidaResultadoFinal:
 				# Concatenando as informações de cada item em uma string formatada
-				resultado += "Acertos: %d Pontuação Total: %d Tempo Total Respondendo: %.2f Proporção Acertos: %s\n" % [item.acertos, item.pontuacaoTotal, item.tempoTotalRespondendo, item.stringProporcaoAcerto]
+				resultado += "Acertos: %d |Pontuação Total: %d | Tempo Total Respondendo: %.2f | Proporção Acertos: %s\n" % [item.acertos, item.pontuacaoTotal, item.tempoTotalRespondendo, item.stringProporcaoAcerto]
 		return resultado
 
 			

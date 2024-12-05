@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func handleFimDoJogoMatouNecro() -> void:
 	PhasesStates.comeBackPrincipallMenu()
-	
+
 	var novoHistorico = PerguntasUtil.PartidaResultadoFinal.new(
 			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countScore() + 778,
 			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntPartidasCorretas(),
@@ -28,9 +28,10 @@ func handleFimDoJogoMatouNecro() -> void:
 			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.stringProporcaoPerguntas()
 	)
 	
+	
 	PerguntasUtil.salvarNovoHistorico(novoHistorico)
 	
-	
+	PerguntasUtil.partida_atual = []	
 func _physics_process(delta: float) -> void:
 	pass
 
