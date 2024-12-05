@@ -45,18 +45,14 @@ func handleMortePersonagem() -> void:
 		remove_from_group("Player")
 		velocity = Vector2.ZERO
 		
-		PerguntasUtil.GERAR_INFORMACOES_PARTIDA.showHistorico()
-		
-		
+	
 		if state !=null :
 			state.queue_free()
 			set_collision_layer_value(2,false)
 			await get_tree().create_timer(2).timeout
 			PhasesStates.LifeBefore = 0
-			PhasesStates.comeBackPrincipallMenu()
-			
-	
-
+			PerguntasUtil.HandleFimDoJogo()
+		
 
 	
 	

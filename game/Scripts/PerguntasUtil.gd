@@ -8,6 +8,18 @@ func salvarNovoHistorico(novoHistorico: PartidaResultadoFinal):
 		PerguntasUtil.historico_partidass.insert(0, novoHistorico)
 
 
+func HandleFimDoJogo() -> void:
+	PhasesStates.comeBackPrincipallMenu()
+	
+	var novoHistorico = PerguntasUtil.PartidaResultadoFinal.new(
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countScore(),
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntPartidasCorretas(),
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntTempoRespondendo(),
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.stringProporcaoPerguntas()
+	)
+	
+	PerguntasUtil.salvarNovoHistorico(novoHistorico)
+
 ##Classe para armazenar informacoes de partida
 class PartidaResultadoFinal:
 	var pontuacaoTotal: int
