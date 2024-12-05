@@ -66,14 +66,12 @@ func _update_timer_label() -> void: labelTimer.text = "Tempo: " + str(tempo_deco
 func setPerguntaLabel(texto: String) -> void: LabelPergunta.text = texto
 	
 
-func setDelay() -> void: 	await get_tree().create_timer(1.0).timeout
-
 	
 func handleButtonRespostaPressed(is_active: bool, nomeBotaoPressionado: String):
 	var respondeuCorretamente: bool = perguntaAtual.is_pergunta_correta() == is_active
 	var botaoPressionado = hideBottaoPressionado(nomeBotaoPressionado)
-	botaoPressionado.modulate = hideGetCollorButton(respondeuCorretamente)
 	
+	botaoPressionado.modulate = hideGetCollorButton(respondeuCorretamente)
 	
 	#Registra pergunta feita
 	var scoreObtido = 0 
@@ -87,7 +85,7 @@ func handleButtonRespostaPressed(is_active: bool, nomeBotaoPressionado: String):
 	
 	PerguntasUtil.CalcularInformacoes.salvar_nova_pergunta_jogada(novaQuestaoGerada)
 	
-	setDelay()
+	await get_tree().create_timer(2).timeout
 	botaoPressionado.modulate = COR_ORIGINAL_BOTAO
 
 	if respondeuCorretamente:

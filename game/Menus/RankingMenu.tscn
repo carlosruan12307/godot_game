@@ -45,4 +45,10 @@ texture = ExtResource("3_65tdy")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_24b64")
 
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 97.0
+offset_top = 190.0
+offset_right = 1155.0
+offset_bottom = 436.0
+
 [connection signal="pressed" from="BotaoVoltar/VoltarButton" to="." method="_on_voltar_button_pressed"]

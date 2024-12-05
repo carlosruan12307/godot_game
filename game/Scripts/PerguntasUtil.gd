@@ -7,19 +7,6 @@ var GERAR_INFORMACOES_PARTIDA: CalcularInformacoes = CalcularInformacoes.new()
 func salvarNovoHistorico(novoHistorico: PartidaResultadoFinal):
 		PerguntasUtil.historico_partidass.insert(0, novoHistorico)
 
-
-func HandleFimDoJogo() -> void:
-	PhasesStates.comeBackPrincipallMenu()
-	
-	var novoHistorico = PerguntasUtil.PartidaResultadoFinal.new(
-			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countScore(),
-			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntPartidasCorretas(),
-			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntTempoRespondendo(),
-			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.stringProporcaoPerguntas()
-	)
-	
-	PerguntasUtil.salvarNovoHistorico(novoHistorico)
-
 ##Classe para armazenar informacoes de partida
 class PartidaResultadoFinal:
 	var pontuacaoTotal: int
@@ -75,8 +62,9 @@ class CalcularInformacoes:
 	func stringProporcaoPerguntas() -> String:
 		var partidasCorretas = countQntPartidasCorretas()
 		var partidasJogadas = countQntPartidasJogadas()
+		var	resultado = "%d/%d" % [partidasCorretas, partidasJogadas]
 		
-		return partidasCorretas.str()+"/"+partidasJogadas.str()
+		return resultado
 		
 	func countQntPartidasJogadas(perguntasJogadas: Array[PerguntaRespondida] = PerguntasUtil.partida_atual) -> int:
 		
@@ -93,13 +81,14 @@ class CalcularInformacoes:
 		PerguntasUtil.partida_atual.insert(0, nova_pergunta_jogada)
 	
 	
-	static func showHistorico() -> void:
+	static func showHistorico() -> String:
+		var resultado: String = ""
 		for item in PerguntasUtil.historico_partidass:
 			if item is PartidaResultadoFinal:
-				print("Acertos: ", item.acertos, 
-					"Pontuação Total: ", item.pontuacaoTotal, 
-					"Tempo Total Respondendo: ", item.tempoTotalRespondendo, 
-					"Proporção Acertos: ", item.stringProporcaoAcerto)	
+				# Concatenando as informações de cada item em uma string formatada
+				resultado += "Acertos: %d Pontuação Total: %d Tempo Total Respondendo: %.2f Proporção Acertos: %s\n" % [item.acertos, item.pontuacaoTotal, item.tempoTotalRespondendo, item.stringProporcaoAcerto]
+		return resultado
+
 			
 		
 	static func showPartida() -> void:

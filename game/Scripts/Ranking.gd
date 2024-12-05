@@ -1,9 +1,11 @@
 extends Node2D
 @onready var audio_click_player = $AudioStreamPlayer2D
-
+@onready var labelHistorico =$RichTextLabel
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	PerguntasUtil.CalcularInformacoes.showHistorico()
+	var historicoString = PerguntasUtil.CalcularInformacoes.showHistorico()
+	
+	labelHistorico.text = historicoString
 	pass # Replace with function body.
 
 

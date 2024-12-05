@@ -10,14 +10,25 @@ class_name DeadNecro
 func Enter():
 	ShaderRect.material.set_shader_parameter("raio", 100)
 	animation.play("dead")
-	PerguntasUtil.HandleFimDoJogo()
+	handleFimDoJogoMatouNecro()
 	pass
 func Exit():
 	pass
 func _ready() -> void:
 	pass # Replace with function body.
 
+
+func handleFimDoJogoMatouNecro() -> void:
+	PhasesStates.comeBackPrincipallMenu()
 	
+	var novoHistorico = PerguntasUtil.PartidaResultadoFinal.new(
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countScore() + 778,
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntPartidasCorretas(),
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.countQntTempoRespondendo(),
+			PerguntasUtil.GERAR_INFORMACOES_PARTIDA.stringProporcaoPerguntas()
+	)
+	
+	PerguntasUtil.salvarNovoHistorico(novoHistorico)
 	
 	
 func _physics_process(delta: float) -> void:
