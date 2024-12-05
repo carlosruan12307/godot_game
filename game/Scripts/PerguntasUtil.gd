@@ -1,11 +1,31 @@
 extends Node
 
-var partida_atual: Array = []
-var historico_partidas: Array = [] #Estrutura de dados LIFO
+var historico_partidass: Array[PartidaResultadoFinal] = []
+var partida_atual: Array[PerguntaRespondida] = [] #Estrutura de dados LIFO
 var GERAR_INFORMACOES_PARTIDA: CalcularInformacoes = CalcularInformacoes.new() 
+
+func salvarNovoHistorico(novoHistorico: PartidaResultadoFinal):
+		PerguntasUtil.historico_partidass.insert(0, novoHistorico)
 
 
 ##Classe para armazenar informacoes de partida
+class PartidaResultadoFinal:
+	var pontuacaoTotal: int
+	var acertos: int
+	var tempoTotalRespondendo: float
+	var stringProporcaoAcerto: String
+	
+	func _init(
+		_pontuacaoTotal: int = 0, 
+		_acertos: int = 0,
+		_tempoTotalRespondendo: float = 0.0, _stringProporcaoAcerto: String = ""):
+			
+			pontuacaoTotal = _pontuacaoTotal
+			acertos = _acertos
+			tempoTotalRespondendo = _tempoTotalRespondendo
+			stringProporcaoAcerto = _stringProporcaoAcerto
+			
+			
 class PerguntaRespondida:
 	var score: int
 	var acertou: bool
@@ -25,23 +45,52 @@ class PerguntaRespondida:
 class CalcularInformacoes:
 	const TAMANHO_HISTORICO: int = 5
 	
-	func countQntTempoRespondendo(perguntasJogadas: Array) -> int:
+	func countQntTempoRespondendo(perguntasJogadas: Array[PerguntaRespondida] = PerguntasUtil.partida_atual) -> int:
 		var count: float = 0.0
 		
-		for match in perguntasJogadas: count += match.tempoDeResposta
+		for pergunta in perguntasJogadas: count += pergunta.tempoDeResposta
 		
 		return count
 		
-	func countScore(perguntasJogadas: Array) -> int:
+	func countQntPartidasCorretas(perguntasJogadas: Array[PerguntaRespondida] = PerguntasUtil.partida_atual) -> int:
+		var count: int = 0
+		
+		for pergunta in perguntasJogadas: 
+			if pergunta.acertou: count += 1
+		
+		return count
+		
+	func stringProporcaoPerguntas() -> String:
+		var partidasCorretas = countQntPartidasCorretas()
+		var partidasJogadas = countQntPartidasJogadas()
+		
+		return partidasCorretas.str()+"/"+partidasJogadas.str()
+		
+	func countQntPartidasJogadas(perguntasJogadas: Array[PerguntaRespondida] = PerguntasUtil.partida_atual) -> int:
+		
+		return PerguntasUtil.partida_atual.size()
+		
+	func countScore(perguntasJogadas: Array[PerguntaRespondida] = PerguntasUtil.partida_atual) -> int:
 		var total_score: int = 0
 		
-		for match in perguntasJogadas: total_score += match.score
+		for pergunta in perguntasJogadas: total_score += pergunta.score
 
 		return total_score
 		
 	static func salvar_nova_pergunta_jogada(nova_pergunta_jogada):
-		PerguntasUtil.historico_partidas.insert(0, nova_pergunta_jogada)
+		PerguntasUtil.partida_atual.insert(0, nova_pergunta_jogada)
 	
+	
+	static func showHistorico() -> void:
+		for item in PerguntasUtil.historico_partidass:
+			if item is PartidaResultadoFinal:
+				print("Acertos: ", item.acertos, 
+					"Pontuação Total: ", item.pontuacaoTotal, 
+					"Tempo Total Respondendo: ", item.tempoTotalRespondendo, 
+					"Proporção Acertos: ", item.stringProporcaoAcerto)	
+			
 		
-	static func get_historico() -> Array:
-		return PerguntasUtil.historico_partidas
+	static func showPartida() -> void:
+		for item in PerguntasUtil.partida_atual:
+			print("acertou: ", item.acertou, " score: ", item.score, " tempo: ", item.tempoDeResposta, "s")	
+		

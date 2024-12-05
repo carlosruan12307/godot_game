@@ -86,55 +86,6 @@ collision_mask = 129
 distancia = 200
 SPEED = 200
 
-[node name="Slime2" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(1055.6, 9.86238)
-collision_layer = 4
-collision_mask = 129
-distancia = 450
-SPEED = 300
-
-[node name="Slime3" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(363.753, 166.764)
-collision_layer = 4
-collision_mask = 129
-distancia = 300
-SPEED = 270
-
-[node name="Slime4" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(681.146, 29.5871)
-collision_layer = 4
-collision_mask = 129
-distancia = 300
-SPEED = 270
-
-[node name="Slime5" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(458.258, 280.629)
-collision_layer = 4
-collision_mask = 129
-distancia = 700
-SPEED = 150
-
-[node name="Slime6" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(582.183, 218.765)
-collision_layer = 4
-collision_mask = 129
-distancia = 700
-SPEED = 230
-
-[node name="Slime7" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(690.061, 212.489)
-collision_layer = 4
-collision_mask = 129
-distancia = 700
-SPEED = 250
-
-[node name="Slime8" parent="." groups=["Enemy"] instance=ExtResource("3_f6rkq")]
-position = Vector2(846.974, 208.903)
-collision_layer = 4
-collision_mask = 129
-distancia = 700
-SPEED = 270
-
 [node name="AreaForaDoJogo" type="Node" parent="."]
 script = ExtResource("4_av6i2")
 

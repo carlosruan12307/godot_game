@@ -10,7 +10,7 @@ class_name DeadEnemy
 # Called when the node enters the scene tree for the first time.
 func Enter():
 	
-	progressGainLife.value = progressGainLife.value + (1000/8)
+	progressGainLife.value = progressGainLife.value + (1000/1)
 	animation.play("dead")
 	pass
 func Exit():

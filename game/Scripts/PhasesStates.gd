@@ -12,7 +12,7 @@ const Phases = {
 	"BOSS_PHASE" : {"PATH": "TODO"}
 }
 
-var currentPhase = Phases.SECOND_PHASE
+var currentPhase = Phases.FIRST_PHASE
 var LifeBefore = 0
 func setSceneSelected(phase) -> void: get_tree().change_scene_to_file(phase.PATH)
 	

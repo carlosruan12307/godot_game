@@ -28,15 +28,38 @@ var randomLightning = 1
 var pushX = 0
 var pushY = 0
 var oneTimeQuestion = true
+
 func _ready() -> void:
 	 # Converte a posição do personagem para coordenadas de tela normalizadas (UV)
 	if PhasesStates.LifeBefore != 0:
+		print(PhasesStates.LifeBefore)
 		lifeBar.value = PhasesStates.LifeBefore
 		lifeBarLabel.text = str(lifeBar.value) + "/100"
 	ray.enabled = true
 	scale = Vector2(3,3)
 	#collisionLight.disabled = true  # Inicialmente, a colisão do raio está desativada
 
+func handleMortePersonagem() -> void:
+		rotation = 0
+		animationP.play("dead")
+		remove_from_group("Player")
+		velocity = Vector2.ZERO
+		
+		PerguntasUtil.GERAR_INFORMACOES_PARTIDA.showHistorico()
+		
+		
+		if state !=null :
+			state.queue_free()
+			set_collision_layer_value(2,false)
+			await get_tree().create_timer(2).timeout
+			PhasesStates.LifeBefore = 0
+			PhasesStates.comeBackPrincipallMenu()
+			
+	
+
+
+	
+	
 func _process(delta: float) -> void:
 
 	if progressBarLifeGain and progressBarLifeGain.value >= 1000 and oneTimeQuestion:
@@ -48,19 +71,10 @@ func _process(delta: float) -> void:
 		#lifeBarLabel.text = str(lifeBar.value) + "/100"
 		oneTimeQuestion = false;
 	
-	if lifeBar.value == 0 and animationP.animation != "dead":
-		rotation = 0
-		animationP.play("dead")
-		
-		remove_from_group("Player")
-		velocity = Vector2.ZERO
-		if state !=null :
-			state.queue_free()
-			set_collision_layer_value(2,false)
-			await get_tree().create_timer(2).timeout
-			get_tree().change_scene_to_file("res://game/Menus/PrincipalMenu.tscn")
-			#var instanceEndGame = endgame.instantiate()
-			#currentPhase.add_child(instanceEndGame);
+	
+	##QUANDO MORRE
+	if lifeBar.value == 0 and animationP.animation != "dead": handleMortePersonagem()
+
 		
 	if position.y <= 280 and is_on_floor() and lightning:
 		lightningAnimation.visible = true
