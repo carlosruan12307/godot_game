@@ -1,4 +1,4 @@
-# Introdução ao nosso jogo
+# Introdução ao nosso jogo: Labirinto do conhecimento
 
 ## Controles Básicos
 
